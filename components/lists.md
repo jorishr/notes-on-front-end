@@ -27,6 +27,7 @@ Examples:
 ```
 ## List attributes     
 List types: square, circle, none
+
 Contenteditable lets the user modify list items
 ## CSS styling 
 ```CSS
