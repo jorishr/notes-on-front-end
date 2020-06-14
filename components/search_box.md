@@ -1,9 +1,9 @@
 # Search boxes
 See codepen for working examples:
-- [link:Basic Search Box](https://codepen.io/jorishr/pen/rNNoWmg)
-- [link:Expanding Search Box](https://codepen.io/jorishr/pen/dxGKvg)
+- [Basic Search Box](https://codepen.io/jorishr/pen/rNNoWmg)
+- [Expanding Search Box](https://codepen.io/jorishr/pen/dxGKvg)
 
-1. HTML Markup / CSS
+## 1. HTML Markup / CSS
 The main html elements are: 
 - a containing div
 - an input element from the text type with a placeholder attribute 
@@ -41,13 +41,13 @@ input {
 ```
 - width expands on hover 
 ```CSS
-.search-box:hover > search-text { width: 240px; padding: 0 	6px}
+.search-box:hover > search-text { width: 240px; padding: 0 6px; }
 	
-.search-box:hover > search-btn { background: white }
+.search-box:hover > search-btn { background: white; }
 ```
 Use transitions of +- .4s to smoothen the expansion effect. 
 
-2.	Bootstrap
+## 2. Bootstrap
 The bootstrap markup consists: 
 - a form
 - a containing div

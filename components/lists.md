@@ -68,5 +68,6 @@ Attributes:
 						<li>zonder korting</li>
 					</ul>
 			</ul>
-	</ul></p>
+	</ul>
+</p>
 ```

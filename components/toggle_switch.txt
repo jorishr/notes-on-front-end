@@ -1,3 +1,0 @@
-TOGGLE SWITCH
-
-See CODEPEN for example and comments. Basically use a checkbox, reduce to zero and use the <label> element and a pseudo-element to built the switch. 

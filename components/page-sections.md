@@ -15,7 +15,7 @@ Modifier classes can be added to make changes in media-queries or adding alterna
 NOTE
 For seperating page section it's often enough just to work with padding on every other section. But that will depend on the design.
 
-## Example: alernating background colors for even and odd section
+## Example: alternating background colors for even and odd section
 Exclude the first section which may be a hero with specific styles. Select the even and odd section with the pseudo class :nth-child()
 ```CSS
 .section:not(.section1):nth-child(even){ background-color: red }

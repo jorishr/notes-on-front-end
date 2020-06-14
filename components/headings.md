@@ -36,8 +36,8 @@ Use the display: inline-block; to better control the dimensions. This way you ca
 	&--bottomMarginL {}
 }
 ```
-## Tittle with solid color sidebars
-See [link:Codepen](https://codepen.io/jorishr/pen/JQgrwy) for working example.
+## Title with solid color sidebars
+See [Codepen](https://codepen.io/jorishr/pen/JQgrwy) for working example.
 
 Two bars fill the space of the tittle element left and right with a solid colored bar.
 
@@ -86,7 +86,7 @@ The ::after bar element sits on top of the ::before element and is white. To pos
 ```
 
 ##	Title with background image clip
-See [link:Codepen](https://codepen.io/jorishr/pen/pMjXjV) for working example.
+See [Codepen](https://codepen.io/jorishr/pen/pMjXjV) for working example.
 
 To use an image as background inside the title letters you need to use a big bold font. 
 ```CSS
