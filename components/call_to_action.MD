@@ -1,13 +1,9 @@
-##############
-CALL TO ACTION
-##############
-
+# Call to action
 Thing to take into account:
 - color and contrast
 - size (visual hierarchy)
 - the ad copy (right text content)
 - relevance
-
 
 Use the css class .cta
 
@@ -15,9 +11,3 @@ It usually consists of a div box with:
 - title
 - text
 - btn
-
-The button can take up the entire width of the screen or the container. To do so use CALC:
-
-    width: calc(100% - 1em);
-
-
