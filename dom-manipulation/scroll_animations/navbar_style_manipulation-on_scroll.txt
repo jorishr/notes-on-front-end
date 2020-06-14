@@ -1,0 +1,144 @@
+#######################
+NAVBAR STYLES ON SCROLL
+######################################################
+	I.	JQUERY
+	II.	INTERSECTIONAL OBSERVER API
+	III.	VANILLA JS
+		A.	SLIDE INTO VIEW ON SCROLL
+		B.	SHRINK ON SCROLL
+		C.	HIDE ON SCROLL DOWN/SHOW ON SCROLL UP
+		D.	STICKY NAVBAR BEYOND SCROLL POINT
+######################################################
+
+############
+I.	JQUERY
+############
+
+1. detect the scroll: when the scrollTop is more than the height of the navbar
+2. toggle a css class
+
+	var $nav = $("#mainNavbar");
+	$(document).scroll(function () {
+           $nav.toggleClass("scrolled", $(this).scrollTop() > 				$nav.height());
+            });
+        });
+
+
+#################################
+II.	INTERSECTIONAL OBSERVER API
+#################################
+
+The standard way of doing this is to add an EVENT LISTENER to the window and on scroll below a point (offsetTop) you add/remove a css class.
+
+With the Intersectional Observer API you observe a section of the page. As it leaves the viewport, you add the css class. When it re-enters the viewport, you remove the class.
+
+	const header = document.querySelector('header');
+	const sectionOne = document.querySelector('.hero-section');
+
+	const sectionOneOptions = {};
+	const sectioOneObserver = 
+		new IntersectionObserver(function(entries, 						sectionOneObserver){
+				entries.forEach(entry => {
+					console.log(entry.target);
+					<WHAT TO DO>
+				})
+	}, 	sectionOneOptions);
+	
+	sectionOneObserver.observe(sectionOne);
+
+The code that we want to run, is to ADD a css class when the hero section leaves the page, thus when it is no longer INTERSECTING with the page. In other words, when entry.intersecting is false.
+
+	if(!entry.intersecting){
+		header.classList.add('nav-scrolled');
+	} else {header.classList.remove('nav-scrolled')};
+
+To have this effect kick in before the section is scrolled of the page completely you can play with the rootMargin in the options.
+
+	options {rootMargin: -200px 0px 0px 0px}; 
+
+This will kick in the effect when the section 200px away from dissappearing from the page.
+
+
+################
+III.	VANILLA JS
+################
+
+The onscroll property of the GlobalEventHandlers mixin is an EventHandler that processes scroll events.
+
+	target.onscroll = functionRef;
+
+For example: window.onscroll = (){myFunction};
+
+
+A.	SLIDE INTO VIEW ON SCROLL
+
+Set a position: fixed; and top: -<X>px; whereby the negative top position is equal to the height of the bar.
+
+In the JS use the window.onscroll method and trigger an action when the scroll goes beyond a trigger point, that is a scroll value (from the top).
+	
+	const navBar = document.querySelector('.navbar');
+	let scrollValue = document.body.scrollTop;
+	
+	window.onscroll = () => {
+		if(scrollValue > 20){
+			navBar.style.top = '0';
+		} else {
+			navBar.style.top = '-50px'
+		}
+	} 
+
+B.	SHRINK ON SCROLL
+
+This is similar to the above. If the user has scrolled beyond a certain point, a scrollValue, you change the styles. If the user comes back up below that threshold, you revert back to previous styles.
+
+
+C.	HIDE ON SCROLL DOWN/SHOW ON SCROLL UP
+
+Give the navbar a position:fixed; and position: 0;
+
+Here you need to track the scrolling positions. If the NEW scrolling position has a higher value than the PREVIOUS position, the user is moving down. If not, he's moving up. 
+
+Track the scrolling value with window.pageOffsetY value. 
+
+	const navBar = document.querySelector('.nav-bar');
+	let basePosition = window.pageYOffset;
+	window.onscroll = () => {
+		let currentPosition = window.pageYOffset;
+		if(basePosition < currentPosition){
+			navBar.style.position = '-50px';
+		} else {
+			navBar.style.position = '0';
+		}
+		basePosition = currentPosition;
+	}
+
+IMPORTANT: set the basePosition value to the currentPosition value to track subsequent scrolling actions.
+
+
+D.	STICKY NAVBAR BEYOND A SCROLL REFERENCE POINT
+
+The navbar is located not at the vary top but below a hero section, for example.
+
+When the user scrolls down and beyond the navbar position, the navbar becomes sticky.
+
+CSS
+
+Create a css class that can be added through JS.
+
+	.sticky { position: fixed; top: 0; width: 100%; };
+
+JS
+
+Store the vertical position of the navbar.
+	
+	const navBar 	= document.querySelector('.nav-bar');	
+	const navBarPos	= navBar.offsetTop; 
+	
+	window.onscroll = () => {
+		let currentPos = window.pageYOffset;
+		if(currentPos > navBarPos){
+			navBar.classList.add('sticky');
+		} else {
+			navBar.classList.remove('sticky');
+		}
+	}

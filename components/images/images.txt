@@ -1,0 +1,85 @@
+######
+IMAGES
+######################
+I.	ABOUT
+II. 	IMAGE DIMENSIONS
+III.	IMAGE ATTRIBUTES
+######################
+
+###########
+I.	ABOUT
+###########
+
+Image content is defined outside of the web page that renders it. 
+
+We can refer to these external resources from within an HTML document by using the absolute, relative, and root-relative URLs.
+
+<img> tag has SOURCE attribute, which points to the image file you want to display. 
+	
+	<img src="" alt=""> is an empty element like <hr> en <br>.
+
+NOTE: by default images are in-line elements and get assigned a little white space underneath. To correct this: use css display: block;
+
+With future ANIMATIONS or ADVANCED POSITIONING in mind it may be best to put the <img> element inside a container <div>.
+
+Since HTML5 it is also best to put the entire thing inside a <figure> element.
+
+######################
+II.	IMAGE DIMENSIONS
+######################
+
+By default, the <img> ELEMENT uses the INHERITED dimensions of the image file itself. 
+
+Setting both width="" or height="" will cause the image to stretch. If you only one property, the image will scale proportionately.
+
+Dimension values are specified in pixels, and you should NEVER include a unit in HTML. Thus width="75". 
+
+######################
+III.	IMAGE ATTRIBUTES
+######################
+
+Adding the alternative text ALT attribute is good pratice. It helps search enigines and screen readers. Screen readers will communicate this ALT="VALUE" to visually impaired people.
+
+The TITLE attribute will be visible when a user hovers over an image.
+ 
+    <img    src="/images/red_flower.png" 
+            title="A red flower" 
+            alt="An image of a red flower">
+
+###################
+IV.	IMAGE QUALITY
+###################             
+
+Statistically speaking you can get away with 85% before the user notices a difference. 
+
+Quality reduction can be done automatically or manually;
+
+LINUX:      GIMP, PNGQUANT --strip or IMAGEOPTIM
+WINDOWS:    FileOptimizer application
+
+Taskrunners/build tool plugins: imagemin and svgo packages
+
+##################
+V.	IMAGE FORMAT
+##################
+
+1.  PIXEL-based formats: jpg, png, gif 
+
+For photos: use jpg, can handle large color pallets without increasing too much in size.
+
+Simple animations: gifs 
+NOTE: problematic for transparency against background
+
+PNG: allround for icons, diagrams, logos,...
+
+IMPORTANT: pixel-based imgs need to be twice the size you want them to appear on RETINA displays. Thus you may need two or four versions:
+
+    350x250 for standard mobile
+    700x500 for retina mobile
+
+    600x400 for standard screens
+    1200x800 for retina screens
+
+2.  VECTOR-based graphics
+
+Scale up and down without quality loss, great for responsive design and mobile. Problematic when text is present inside the image.

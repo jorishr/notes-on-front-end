@@ -1,0 +1,43 @@
+##############
+EVENT HANDLING
+##############
+
+On traditional DOM elements you can set event handling attributes like onclick="return false" whereby you can write JS in the string. 
+
+In React you should generally not need to call addEventListener to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+
+In JSX there are syntax differences:
+
+	onClick={//JS here}
+	onChange={//JS here}
+
+USE HANDLER FUNCTIONS
+
+function handleClick(e){
+	e.preventDefault()
+	console.log('Btn clicked')
+}
+
+<button onClick={handleClick}
+
+The event parameter is standard available but you can also call the function explicitely: onClick={(e) => handleClick(e)}. This is more useful when additional parameters need to be passed to the handler function.
+
+NOTE: in class Components you have to bind the this keyword correctly and use onClick={this.handleClick}
+SEE: https://reactjs.org/docs/handling-events.html
+
+
+#################
+ONCLICK ATTRIBUTE
+#################
+
+You can pass it a simple function stored in a variable OR use an anonymous function and call another function inside. Both work but it depends on whether you need access to addtional parameters or not:         
+
+	onClick={handleRecipeAdd}
+
+	onClick={() => handleRecipeDelete(id)}
+
+This works exactly the same as addEventListener would work. The onClick parameter accepts a function as the input and that function has the event as the parameter. 
+
+The handleRecipeAdd function is a function so we can pass it to the onClick just fine and it will work, but we will only have access to the event parameter from the onClick event. In this case that is ok since handleRecipeAdd does not need additional information.
+
+The handleRecipeDelete on the other hand needs an id passed to it. In order to ensure we pass the correct id we are passing a function to onClick which just calls the handleRecipeDelete function with the id.

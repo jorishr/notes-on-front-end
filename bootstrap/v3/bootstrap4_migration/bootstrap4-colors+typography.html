@@ -1,0 +1,99 @@
+<!-- Bootstrap 4 vs. 3: Changes
+
+Global font size is 16px versus 14px. You adjust using rem -root em, a relative measure-
+
+Grid system: xs - sm - md - lg - xl
+
+Panels, thumbnails and wells are now all "cards" 
+
+Geen Glyphicons meer. Externe fonts/icons gebruiken.
+
+.btn-secundary .btn-sm
+
+Belangrijk: gebruik hoedanook de documentatie voor de versie die je gaat gebruiken. 
+Niet nodeloos memorizeren van veranderingen. Wel: oefen om snel en efficiënt te
+kunnen zijn bij het opzoeken en gebruiken van compenenten of codes uit de docs. -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Make it responsive on mobile devices -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Kleuren en typografie</title>
+  </head>
+  <body>
+
+    <!-- 1. Contextual color classes, bijv. primary, info, danger, warning, success...deze hebben allemaal
+default values. Bijvoorbeeld, "danger" is rood, maar de schakering is anders in v3 en v4.
+Contextueel betekent dat bijv. je "primary" kleur van de website is de default waarde van die klasse.
+"Warning" is default kleur voor waarschuwingen...Fouten -> "danger", enz. 
+Ja kan dit gebruiken voor tekst en achtergronden. -->
+    
+<div class="container">
+    <h1>Basiskleuren in Bootstrap v4, zie docs voor info</h1>
+    <h1 class="text-primary">Basiskleuren in Bootstrap v4, primary</h1>
+    <h1 class="text-secundary">Basiskleuren in Bootstrap v4, secundary</h1>
+    <h1 class="text-danger">Basiskleuren in Bootstrap v4, danger</h1>
+    <h1 class="text-warning">Basiskleuren in Bootstrap v4, warning</h1>
+    <h1 class="text-success">Basiskleuren in Bootstrap v4, success</h1>
+    <h1 class="text-white bg-dark">Basiskleuren in Bootstrap v4, wit op zwarte bg</h1>
+    <h1 class="text-muted">Basiskleuren in Bootstrap v4, muted</h1>
+    <h1 class="text-black-50">Basiskleuren in Bootstrap v4, zwart 50</h1>
+    <h1 class="text-light bg-dark">Basiskleuren in Bootstrap v4, text light bg-dark</h1>
+
+</div>
+
+<!-- 2. Typography. 
+    - A. Verschil tussen normale headers en grotere display headers 
+    - B. Blockquotes, mb-0 staat voor de marge onderaan. Als je de 
+    blockquote klasse verwijdert verandert de opmaak lichtjes. Om het 
+    wat zinvoller te maken, voeg de name source component toe. Standaard
+    staat de quote links, om rechts uit te lijnen, gebruik de klasse text-right.
+    - C. Fonts Units: globale font size is 16. x rem om verhoudingsgewijs de font
+    grootte aan te passen in paragrafen, headers of andere elementen. rem staat voor
+    root "m" en heeft z'n oorsprong in de breedte van de letter m. Dus 1rem of 2.5rem,
+    of 0.85rem...Dit kan nuttig zijn om later de globale font size aan te passen en toch 
+    alle verhoudingen te behouden.
+    - D. Experimenteer ook met o.a. inline text elementen,.lead, etc.
+-->
+<div class="container">
+    <h1 class="text-primary">Normale header h1</h1>
+    <h3 class="text-secundary">Normale header h3</h3>
+    <div class="display-1 text-light bg-dark">Display header 1</div>
+    <div class="display-3 text-success">Display header 3</div>
+
+</div>
+<div class="container">
+        <blockquote>
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        </blockquote>
+        
+        <blockquote class="blockquote">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        </blockquote>
+
+        <blockquote class="blockquote">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+        
+        <blockquote class="blockquote text-right">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+        
+    
+</div>    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

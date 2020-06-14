@@ -1,0 +1,38 @@
+#############
+PAGE SECTIONS
+#############
+
+Usually a webpage will have:
+
+A HEADER SECTION which includes advertising and a navbar, the HERO SECTION which is the eyecatcher with a call to action or main stories, and various other sections untill you get to the FOOTER SECTION.
+
+These sections may have common css features that can be re-used from a MODULE _page-section.scss
+
+Thus make sure that those section are wrapped into a container div in with shared class in your html markup.
+
+In css you define the base-styles for each section with for 
+example, padding.
+
+Modifiers classes can be added to make changes in media-queries or adding alternating background colors.
+
+NOTE
+
+For seperating page section it's often enough just work with padding on every other section. But that will depend on the design.
+
+EXAMPLE: ALTERNATING BACKGROUND COLOR FOR EVEN/ODD SECTIONS
+
+Exclude the first section which may be a hero with specific styles. 
+
+Select the even and odd section with the pseudo class 
+	
+	:nth-child()
+
+ 	section:not(section1):nth-child(even){background-color: red}
+
+ 	section:not(section1):nth-child(uneven){background: blue}
+
+THUS: ---- section1 excluded
+      ---- section2 1 uneven: blue
+      ---- section3 2 even: red
+      ---- section4 3 uneven: blue
+      ---- section5 4 even: red

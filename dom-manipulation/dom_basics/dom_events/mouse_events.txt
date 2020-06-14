@@ -1,0 +1,33 @@
+############
+MOUSE EVENTS
+############
+
+click and dblclick are complex events that consist of a sequence of mousedown/mouseup events that are already preconfigured.
+
+Click-related events always have the WHICH property, which allows to get the exact mouse button.
+
+event.which = 1;		//-> left button
+event.which = 2;		//-> middle button
+event.which = 3;		//-> right button
+
+MODIFIERS
+Be careful with modifiers if your code is going to run on a pc/mac or mobile devices without keyboards.
+
+button.onclick = function(event) {
+    if (event.altKey && event.shiftKey) {
+      alert('Hooray!');
+    }
+}
+
+COORDINATES
+All mouse events have coordinates in two flavours:
+
+Window-relative: clientX and clientY.
+Document-relative: pageX and pageY.
+
+PREVENT COPYING TEXT
+<div oncopy="alert('Copying forbidden!');return false">
+  Dear user,
+  The copying is forbidden for you.
+  If you know JS or HTML, then you can get everything from the page source though.
+</div>

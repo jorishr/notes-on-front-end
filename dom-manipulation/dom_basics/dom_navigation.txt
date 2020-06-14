@@ -1,0 +1,122 @@
+##############
+DOM NAVIGATION
+############################################
+I.	SURROUNDING NODES
+II.	DOM COLLECTIONS
+III.	ELEMENT NODE ONLY NAVIGATION
+IV.	SEARCHING FOR ELEMENT NODES IN THE DOM
+############################################
+
+
+#######################
+I.	SURROUNDING NODES
+#######################
+
+Once you selected an element you may want to manipulate elements around it. The methods firstChild, lastChild, parentNode and next/previousSibling are simple to understand.
+
+document (root)
+	-> document.documentElement (<html>)
+		-> document.head (<head>)
+		-> document.body (<body>)
+
+				-> parentNode
+previousSibling <-	div	-> nextSibling 
+				-> childnodes
+					-> firstChild
+					-> lastChild
+  
+
+elem.hasChildNodes();	//-> true/false
+elem.childNodes		//-> Nodelist
+
+Each node has .nodeName and .nodeValue property. The nodeValue for text nodes is the text itself, the nodeValue for element nodes is the attribute value (value=""), usually null for a DIV.
+
+Some DOM types have additional properties that can be used to navigate or access parts of the element, a <table> for example has additional properties like: 
+
+table.rows	//-> collection of <tr> elements in the table
+tr.cells	//-> collection if cells <td> and <th> inside a <tr>
+
+
+#####################
+II.	DOM COLLECTIONS
+#####################
+
+The above properties return the specified node as a NODE OBJECTS. If there are multiple objects you get an NODE LIST, an iterable array-like datastructure.
+
+DOM COLLECTIONS are LIVE: if you add/remove childnodes to will (dis)appear in your collection automatically.
+
+Iterate a DOM collection with a for loop. Do not use a for...in loop as it may show you object properties that are not usefull.
+
+To use array methods like .filter you can convert the DOM collection into an array:
+
+let elemArray = Array.from(document.body.childNodes);
+
+Both NODE LISTS and HTML Collections are collections of DOM elements. 
+
+The NodeList can be live or static, which means that modifications to the DOM are either automatically applied to collections or do not affect them at all.
+
+The number of elements in a DOM collection is found in the .length property.
+
+A Node List has .forEach method available to it and can contain both textNodes and element nodes.
+
+A HTML Collection only contains element nodes and elements can be target by name, id or index position in the collection.
+
+
+##################################
+III.	ELEMENT NODE ONLY NAVIGATION
+##################################
+
+To exclude #text and comment nodes when targetting html tags you can use other identifiers:
+
+parentElement, previous/nextElementSibling, first/lastElementChild, childre
+
+document.body.children	//-> HTML Collection
+
+Usually the parentElement and parentNode are the same thing, except for the <html> tag because its parent is the root document which is not an element tag.
+
+document.documentElement.parentElement		//-> null
+document.documentElement.parentNode		//-> #document (root)
+
+
+MANIPULATING ATTRIBUTES AND TEXT
+If you want to manipulate HTML attributes use element only properties return an ELEMENT NODE.
+
+If you selected an element node and want to modify text inside that element you have to target the text node inside the element.
+That text node can be accessed by the innerHTML property. The nodeValue for element node itself is null or the attribute value of value="".
+
+
+############################################
+IV.	SEARCHING FOR ELEMENT NODES IN THE DOM
+############################################
+
+All methods "getElementsBy*" return a live collection. Such collections always reflect the current state of the document and “auto-update” when it changes.
+
+- BY ID
+Use document.getElementById('<id>'). 
+
+There can be only one and it is also available as a global variable unless that variable is overwritten by your own JS code.
+
+This selector return an HTML Element node.
+
+- QUERYSELECTOR(ALL)
+
+The querySelectors are STATIC are do not update automatically when new elements are added/removed.
+
+querySelector()
+Returns the FIRST element that matches a given CSS style selector. Thus all CSS selectors can be used: #id, class, elements, pseudo selectors...
+
+querySelectorAll()
+By using querySelectorAll you get a NODELIST that represents a list of the document's elements that match the specified group of selectors.
+
+A NODELIST can be iterated over with .forEach() and can be CONVERTED into an array using Array.from()
+
+To find all currently :active of :hovered over items:
+querySelectorAll(:hover)
+
+- MATCHES, CLOSEST, CONTAINS
+
+There is elem.matches(css) to check if elem matches the given CSS selector.
+
+There is elem.closest(css) to look for the nearest ancestor that matches the given CSS-selector. The elem itself is also checked.
+
+elemA.contains(elemB) returns true if elemB is inside elemA (a descendant of elemA) or when elemA==elemB.

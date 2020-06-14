@@ -1,0 +1,107 @@
+##########
+TAB MENU'S
+##########
+
+Tabs are perfect for single page web applications, or for web pages capable of displaying different subjects.
+
+You have menu-bar on top and content section related to each link item in the bar.
+
+The other content is hidden and you can toggle between sections with JS.
+
+A.	HTML MARKUP
+
+There are TWO OPTIONS: data-attribute or onclick-attribute.
+
+TAB-LINKS
+
+Add a data-attribute to each LINK that corresponds with the ID of each content section.
+
+	<button class="btn-link" data-section="section1">					Section1</button>
+	<button class="btn-link" data-section="section2">					Section2</button>
+
+OR
+
+	<button class="btn-link" onclick="yourFn(event, 					'section1')">Section1</button>
+	<button class="btn-link" onclick="yourFn(event, 					'section2')">Section2</button>
+
+The function name refers to your js function and the string you pass through that function is related to the ID of the content.
+
+If you want to have a DEFAULT TAB CONTENT showing add an ID attribute to that tab: id="default-tab";
+
+
+TAB-CONTENT
+
+All <div> elements with class="tab-content" are hidden by default. When the user clicks on a button it will open the tab content that "matches" this button.
+
+<div class="tab-content" id="section1">
+	<h2>title</h2>
+	<p>lorem ipsum</p>
+  	<span onclick="closeTab(event)">x</span>
+</div>
+<div class="tab-content" id="section2">
+	<h2>title</h2>
+	<p>lorem ipsum</p>
+	<span onclick="closeTab(event)">x</span>
+</div>
+
+B.	CSS
+
+Active class for the btns
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tab-content {display: none; animation: fade-in 1s}
+@keyframes {from {opacity: 0} to {opacity: 1}}
+
+
+C.	JS
+
+If you use the onclick attribute, the eventHandler is already added. You only have to define the function.
+
+This goes against the SOC of course.
+
+There are two things to do: show the correct tab-content, and add the active class to the corresponding button. Plus, first, make sure that the active class is removed from all links AND to have all content reset to display: none;
+
+	function toggleTab (event, section){
+		let tabLinks = document.querySelectorAll('.btn-link');
+		let tabContent = document.querySelectorAll('.tab-					content')
+
+		for(let i = 0; i < tabLinks.length; i++){
+			tabLinks[i].classList.remove('active');
+		}
+
+		for(let i = 0; i < tabContent.length; i++){
+			tabLinks[i].style.display = 'none;
+		}
+
+		event.currentTarget.classList.add('active');
+		document.querySelector('#{section}').style.display = 				'block'		
+	}
+
+If you want to have a DEFAULT TAB CONTENT showing on page-load, add the following:
+
+	let defaultTab = document.querySelector('#default-tab');
+	defaultTab.click();
+
+This will trigger the code stored in the onclick attribute.
+
+To CLOSE the tab-content
+
+	function closeTab(event) {
+		event.parentElement.style.display = 'none';
+	}
+
+On :hover
+
+You can obtain the same effect on :hover instead of onclick by using the attribute onmouseover="yourFn()"
+
+Or changing the eventHandler from 'click' to 'mouseover'
+
+
+DATA-ATTRIBUTES
+
+See CODEPN example.
+	
+

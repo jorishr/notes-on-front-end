@@ -1,0 +1,71 @@
+#############################################
+FIXED NAV BAR MENU LINK HIGHLIGHTS ON SCROLL
+#############################################
+I.	ANIMATION DESCRIPTION
+II.	jQUERY
+III.	WAYPOINTS
+######################################
+
+#################
+I.	DESCRIPTION
+#################
+
+When scrolling down the page, the header nav menu is fixed to the top. 
+
+When scroll arrives at a new section, the corresponding menu link in the header nav bar lights up as it becomes :active.
+
+You need to keep track of the scroll location and the location from the top of each section.
+ 
+############
+II.	jQUERY
+############
+
+A.	HTML
+
+Each page section has and ID ATTRIBUTE and that id is referenced in the HREF attribute of the corresponding NAV LINK.
+
+B.	CSS
+
+Define a class .active that changes the styling of the <a> tag and/or its parent the <li>
+
+Alternatively you could use the bootstrap class active.
+
+C.	JS
+
+Select the array of menu links with .scroll class.
+
+The animation becomes active only when scrolling.
+
+Loop over the menu links and calculate the offset from the top for the corresponding page section.
+
+We know we are at section if the scrollLocation has a bigger value than the sectionOffset.
+
+The .active class is added to the <a> element itself or to its parent the <li>. It's siblings may have gotten that class at a previous click, thus that has to be removed.
+
+	const scrollLink = $('.scroll');
+
+$('window').scroll(function(){
+	let scrollLocation = $(this).scrollTop();
+	scrollLink.each(function(){
+		let sectionOffset = 								$(this.hash).offset().top - 20;
+		if(scrollLocation => sectionOffset){
+			$(this).parent().addClass('active');
+		$(this).parent()								.siblings().removeClass('active');
+		}
+	})	
+})
+
+
+NOTE:
+
+this.hash reads the href attribute of this, and gets the part of the URL beginning with #. So if the anchor looks like:
+
+	<a href="someURL#foobar"> RESULTS IN #foobar
+
+Here you could also use this.getAttribute('href'); because we know the attribute contains only #<page-scction.
+
+The extra value -20 is added to make the change a little earlier so that the highlight is visible even if the user has not scrolled precisely beyond or threshold point but does have the section occupy almost all of the viewport.
+
+
+
+

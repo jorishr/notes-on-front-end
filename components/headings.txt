@@ -1,0 +1,103 @@
+########
+HEADINGS
+#########################
+	I.	BASIC STYLING
+	II.	EXAMPLES
+		A.	HEADING WITH SOLID BARS
+		B.	BACKGROUND IMAGE CLIP
+#########################
+
+###################
+I.	BASIC STYLING
+###################
+
+Headlines or headings such as <h2> and <h3> elements are going to be recurring features and therefore deserve a seperate CSS MODULE.
+
+You can create a general headline class that is applied to all <h2> and <h3> elements that sets a BASE font, font-weight and color.
+
+ 	.headline {
+ 		font/color/weight
+	}
+
+NOTE. The <h2> and <h3> are important semantic HTML indicators but through CSS the differences in styling can erased to have a uniform look.
+
+Modifiers can be used to make customize color, weight and centering and padding/margins.
+
+ .headline {
+	&--color1{}
+	&--centered{text-align}
+	&--smallFont{}
+	&--narrow{max-width}
+	&--bottomMarginS{}
+	&--bottomMarginL{}
+}
+
+text-transform: uppercase;
+
+letterspacing: .08em; | .1em;
+
+BACKGROUND
+
+Use the display: inline-block; to better control the dimensions. This way you can add a dark background-color to sit behind a white text.
+
+##############
+II.	EXAMPLES
+##############
+
+	A.	TITLE WITH SOLID COLOR SIDEBARS USING PSEUDO ELEMENTS
+
+See Codepen for working example.
+
+Two bars fill the space of the tittle element left and right with a solid colored bar.
+
+Basically you create a colored pseudo element that sits in the background over the full width of the containing element (z-index -2). A second pseudo element is white and sits on top that but positioned behind the text only (z-index -1). 
+
+Create a title element h1 and add a class, set to inline-block and position relative.
+
+The inline-block prevent the title from taking up all the space left and right that would overlap with the pseudo elements we will create.
+
+	.title {
+	  	position: relative;
+  		display: inline-block;
+	}
+
+Both 'bars¡ before and after have properties in common. Note that on some browsers you'll have to set height to 101% if not displayed properly.
+
+	*, *::before, *::after { box-sizing: border-box }
+
+	.title::before, .title::after {
+	 	 content: '';
+ 		 display: block;
+ background-color: grey;
+ height: 100%;
+ position: absolute;
+ top: 0;
+	}
+
+Each bar gets styled individually. The before is the one that takes up all the width in the background. Note that the heading .title will be centered on the page. This means that the pseudo elements only start at the point where the heading starts and this will created horizontal scrolling. 
+
+The answer is position absolute from 50% of the starting point of the heading, thus dead in the middle, and pull it back 50% to start at the beginning of the container or page.
+
+ 	.title::before {
+  		width: 100vw;
+  		left: 50%;
+  		transform: translate(-50%);
+  		z-index: -2;
+	}
+
+The ::after element sits on top of the ::before and is white. To position it directly behind the heading text use negative position absolute left and right. It will thus sit just outside the heading element to allow for spacing.
+
+ 	.title::after {
+  		height: 100%;
+  		z-index: -1;
+  		background-color: white;
+  		left: -.2em;
+  		right: -.2em;
+	}
+
+
+	B.	BACKGROUND IMAGE CLIP
+
+See codepen for live example.
+
+Use a big bold font. Use the background property to set a url() and background-clip: text and color: transparent.

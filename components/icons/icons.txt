@@ -1,0 +1,146 @@
+#####
+ICONS
+#############################################
+	I.	ABOUT ICONS
+	II.	ICONS WITH <IMG>
+	III.	ICON FONTS
+	IV.	IN-LINE SVG
+	V.	FONTAWESOME
+	VI.	EXAMPLE: SOCIAL MEDIA ICONS MARKUP
+#############################################
+
+#################
+I.	ABOUT ICONS
+#################
+
+How to deal with icons very much depends on which type of icons you are using. 
+
+You have simple img icons as png's. There are icon fonts.
+
+A website like FONTELLO allows you to create your own custom web font. This not particularly easy. 
+
+On the other hand, using a pre-created icon font (font-awesome) is not particularly responsible as it gives you too many unused icons. 
+
+That's way it is popular to use IN-LINE SVG.
+
+
+######################
+Ii.	ICONS WITH <IMG>
+######################
+
+Whether the icons is .png or .svg doesn't matter. You adjust the width and height as necessary and can position it is as you would with any other html element.
+
+You can put the <img> tag inside a heading <h2> tag, as <img> is an inline element. 
+
+In sass adjust the styling using a child class &__icon of the section-title class.
+
+Since <img> icons are in-line elements they will appear on the same line as the title itself. On mobile screens this does not look good. Therefore set it to display: block; so that the icon get its own line.
+
+You can set a width and height, to create a type of box.
+
+Lineheight = height of the i means the icon wil be centered inside its box
+
+The easy way for positioning <img> icons is position: relative; where you push them up or down as needed, and this has no effect on the neighboring heading or <a> elements. 
+
+ 	img { 	
+		position: relative;
+		top: 8px; 	// pushes it down
+		left: 5px 	// pushed it right
+
+
+################
+III.	ICON FONTS
+################
+
+Font icons are font glyphs (pictogram). They’re part of a web font and are thus defined in web font files and formats. 
+
+Browsers consider it text. Thus you can control the size via font-size, color, shadows, rotation, etc. in CSS.
+
+Positioning a font-icon can be frustrating as the icons are inserted via a pseudo element and it depends on line-height, vertical-align, letter-spacing, word-spacing and how the icon itself was created (with spacing or not).
+
+ENHANCING A WORD OR HEADING
+
+You work with an empty <span> element inside a heading and use a css pseudo element ::before to add the icon. The reference is made by the data-icon attribute. The content is set to the attr() function which links to the value of the attribuut that is given to.
+
+	<h1>
+	<span id="stats-heading" data-icon="<reference"></span>		Stats
+	</h1>
+	
+	#stats-heading::before {
+		content: attr(data-icon);
+		font-family: <your icon font>;
+		
+	} 
+
+STAND-ALONE ICON
+
+Icons can be stand-alone elements, for example when you want it to be a link, thus wrapped in an <a> tag.
+
+<a href="#rss">
+  <span id="rss-link" data-icon="&#x25a8;"></span>
+</a>
+	
+	#rss-link::before {
+		content: attr(data-icon);
+		font-family: <your icon font>;
+	}
+
+There are big advantages to vector icons: resizable up and down without losing quality, extra sharp on retina displays, and small file size. The disavantage is that you are working with individual files that all have to be loaded by the browsers, time and time again, while css sprites files are loaded just once.
+
+Vendor libraries such as font-awesome that come with built-in styles are icon fonts. 
+
+Browsers consider it text, so the icons are anti-aliased as such. This can lead to icons not being as sharp as you might expect.
+
+
+#################
+IV.	IN-LINE SVG
+#################
+
+https://css-tricks.com/pretty-good-svg-icon-system/
+https://fvsch.com/svg-icons/
+https://css-tricks.com/using-svg/
+
+SVG files are vector-based graphics in xml format and can be pasted directly into your html file. This, however, bloats your html file size and is slower to load, but it does save you an additional http request.
+
+OPTIMIZE SVG
+
+The SVG that Adobe Illustrator gives you isn't particularly optimized. It has a DOCTYPE and generator notes that are junk.
+You can use the NODEJS package SVG OPTIMIZER or an online tool.
+
+
+MARKUP
+
+In the html you use <svg> element and the inside the <use> element which renders a copy of the original file. In the css you set a max-width and height to avoid becoming super big on large screens.
+
+	<svg class="site-header__logo__icon">
+            <use href="src/images/icon.svg"></use>
+	</svg>
+
+	.site-header__logo__icon {
+    		max-width: 141px;
+    		max-height: 59px; 
+	}
+
+
+#################
+V.	FONTAWESOME
+#################
+
+Fontawesome library comes with it's own classes, for example to create bigger icons: fa-2x fa-3x fa-4x
+
+
+########################################
+VI.	EXAMPLE: SOCIAL MEDIA ICONS MARKUP
+########################################
+
+You can create an unordered list of icons and inside each list item you have an anchor with a span element that contains a <svg> element and another optional <span> for the icon name. That may be hidden and only used for SEO puroposes.
+
+	ul
+		li
+		     	<a href="#">
+        			<span>
+            			<svg><use href=""></use><svg>
+            			<span>Facebook</span>
+        			</span>
+    			</a>
+

@@ -1,0 +1,55 @@
+###################
+MODIFY PAGE CONTENT
+###################################
+I.	CREATE AND INSERT NEW ELEMENT
+II.	NODE REMOVAL
+###################################
+
+###############################
+I.	CREATE AND INSERT METHODS
+###############################
+
+- CREATE ELEMENT NODE
+document.createElement(tag)
+
+const newElem = document.createElement('div');
+newElem.className = "alert";
+newElem.innerHTML = "<strong>Hi there!</strong>"
+
+- CREATE TEXT NODE
+document.createTextNode(text)
+
+const newText = document.createTextNode('hello world');
+
+- INSERT METHODS
+
+elem.append() 	//->	append nodes or strings at the end of node
+
+elem.prepend()	//-> insert nodes at the beginning of node
+
+For example in a <ul>: ul.append(newli)
+
+elem.before() 		//–> insert nodes or strings before node
+elem.after() 		//-> insert nodes or strings after node
+elem.replaceWith()	//-> replaces node with the given nodes
+
+##################
+II.	REMOVE/CLONE
+##################
+
+REMOVE
+elem.remove()
+
+Make a div element dissappear for 1 second:
+
+let div = document.createElement('div');
+div.className = "alert";
+div.innerHTML = "<strong>Hi there!</strong>";
+
+document.body.append(div);
+setTimeout(() => div.remove(), 1000);
+
+CLONE
+You can make a deep clone with all attributes and subelements.
+const elemDeepClone = elem.clone(true);
+const elemShallowClone = elem.clone(false);

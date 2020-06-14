@@ -1,0 +1,145 @@
+###########################
+STATE AND LIFECYCLE METHODS
+###########################
+I.	STATE
+II.	LIFE CYCLE METHODS
+III.	STATE CHANGES
+###########################
+
+
+###########
+I.	STATE
+###########
+
+To make the component interactive and change upon certain events, we need to introduce STATE.
+
+Add a constructor to the Component class, whereby we override the extended parent Class constructor. You need to take in the props as an argument and call the super(props) with the correct props.
+
+export default class <class-name> extends Component {
+	constructor(props){
+		super(props)
+		this.state = { count: props.initialCount }
+	}
+	render(){
+		return ( <h1>this.props.<prop-name></h1> )
+	}
+}
+
+The state of the application is an object this.state. The state is depending on what you want to do with the component. In this example keeping track of the count which has an initial state defined by the props.initialCount variable defined in the App.js.
+
+Now (see below) you can use that state object key instead of the static prop we set earlier on the html element. The <span> value is now dependent on the state key:value pair in the state object, which for now is set as props.initialCount, thus 0.
+
+export default class Counter extends Component {
+    constructor(props){
+        super(props)
+        this.state = { count: props.initialCount }
+    }
+    render(){
+        return (
+            <div>
+                <button>-</button>
+                <span>{this.state.count}</span>
+                <button>+</button>
+            </div>
+        )
+    }
+}
+
+
+#######################
+II.	LIFECYCLE METHODS
+#######################
+
+We can declare special methods on the component class to run some code when a component mounts and unmounts, that is when it has been rendered in the DOM (mounted) or when it has been removed from the DOM(unmounted).
+
+For example, a timer with setInterval that renders a clock every second. An element is mounted and unmounted every second.
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+  componentWillMount() {...} //before render() in DOM
+  componentDidMount() {...}  //after render() in DOM
+  componentWillUnmount() {...} //only one method, just before removal from the DOM
+  	  tick(){this.setState({ date: new Date() });}
+  render(){return <Component>}
+	}
+
+LOGIC
+When <Component /> is passed to ReactDOM.render(), React calls the constructor of the Clock component. The component initializes this.state with an object including the current time.
+
+When the Component output is inserted in the DOM, React calls the componentDidMount() lifecycle method.
+
+Every second the browser calls the tick() method. Inside it, the Clock component schedules a UI update by calling setState() with an object containing the current time.
+
+Thanks to the setState() call, React knows the state has changed, and calls the render() method again to learn what should be on the screen.
+
+If the Clock component is ever removed from the DOM, React calls the componentWillUnmount() lifecycle method so the timer is stopped.
+
+The code for the timer:
+	
+	componentDidMount(){this.timerID = setInterval(
+					() => this.tick(), 1000);}
+
+	componentWillUnmount(){clearInterval(this.timerID);}
+
+
+NOTE: While this.props is set up by React itself and this.state has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
+
+
+
+######################
+III.	CHANGE THE STATE
+######################
+
+To actually change the state we need an event or function that triggers the change. Instead of a traditional JS eventListener you can use the built-in onClick method on a button for example:
+
+	<button onClick={() => {do smth}}>-</button>
+
+Note again: onClick is like an attribute, inside we use {} to enter a JS function.
+
+	<button onClick={() => this.changeCount(-1)}>-</button>
+
+A.	SETSTATE()
+
+Define that function changeCount inside the CLASS whereby you set the new state of the Component through modifying the this.state object defined above. 
+
+This happens via an Object.assign method which override the existing keys you specify. 
+
+In this example count: this.initialCount gets overriden by count: by its own value + the amount we pass to the changeCount function upon button click: 
+
+	changeCount(amount){
+	    this.setState({ count: this.state.count + amount })	}
+
+Note that other key-values pairs that may have been defined in the state variable of the component are not affected because the state updates are merged into object.
+
+B.	ASYNC SETSTATE()
+
+All the calls that are being made to this.setState() are batched together and invoked in parrallel, not one after another. This means that you cannot chain various changes as the next invocation will already start before the previous one is updated.
+
+changeCount(amount){
+	this.setState = {count: this.state.count + amount	}
+	this.setState = {count: this.state.count + amount	}
+}
+
+Here, for example. the update value is NOT amount + amount because BOTH start with the same base value: this.state.count and the second call does not wait for the first to complete.
+
+The solution is to use a variable called prevState which takes a function that returns the new state value based upon the previous state value, not the static base value (this.state.count)
+
+changeCount(amount){
+	this.setState = {prevState => {
+		return {count: prevState.count + amount }}
+	this.setState = {prevState => {
+		return {count: prevState.count + amount }}
+}
+
+Now if we run the same code twice, the second invocation start from the prevState which will be set already by the first invocation. Thus here, the new state that is returned by the second call is amount + amount.
+
+C.	LOCAL/ENCAPSULATION
+
+State is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it. Thus the parent or child components do not know at which state this component is rendered.
+
+You CAN pass the STATE AS A PROP to a child element (top-down or uni-directional) but that state needs to be passed explicitely in the attribute and imported through the prop on the child.
+
+You can use stateless components inside stateful components, and vice versa.

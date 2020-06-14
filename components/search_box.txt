@@ -1,0 +1,103 @@
+##########
+SEARCH BOX
+##########
+
+I.	MARKUP HTML/CSS
+
+See codepen for working example.
+
+The main html elements are: a containing div, an input element from the text type with a placeholder attribute. Another input tag or <a> tag to submit the search (as btn and/or icon).
+
+	div.search-box
+		input.search-text[name="search"]
+		a.search-tbn
+			i.
+
+Position the search-box where you want on the page and give it fixed height, a background-color, and paddding.
+
+The search-text class is floated to the left, the search-btn is floated to the right.
+
+HALF CIRCLE ROUNDED CORNERS
+
+The border-radius should be set equal to the height of the element. You can set this on the input element directly but it is better to to apply it to the search-box.
+
+INPUT TAG STYLES
+
+outline: the outer tiny box around the text
+border: set to none
+background-color: none;
+padding: only on hover
+color:
+line-height: experiment to find the correct one
+font-size
+
+width: 0; and expand on hover
+	search-box:hover > search-text { width: 240px; padding: 0 	6px}
+	
+	search-box:hover > search-btn {background: white}
+
+transitions: .4s 
+
+
+II.	MARKUP BOOTSTRAP
+
+The bootstrap markup consists of a form. a containing div, a label and two input elements. The second input tag can be swapped for a button tag.
+
+	form.form-inline
+		div.form-group
+			label
+			input.form-control name=search type=text
+			input.btn type=submit value=search
+
+The bootstrap styles are not compatible with the example markup in I above. Either accept the limitations of bootstrap or create a fully custom search box with custom css.
+
+III.	YELP CAMP EXAMPLE
+
+To change the placeholder color text use the placeholder pseudo elememt class.
+
+ 	::placeholder {...}
+
+ 	.search-box {...}
+
+Rounded corners are achieved by setting border-radius to the heigth of the searhbox.
+
+The background-color is the main color of the search-box as the background on the button and input element are set to none or transparent.
+
+Padding can be added to position better the input text.
+
+The line-height for vertical positioning, line-height: 2.25; Make sure to first set the font-size and remove existing padding or margins. Check dev tools for what is going on.
+
+ 	.search-box__text {...} 	// input element
+   	.search-box__btn {...}	// <a> or <button>
+ 
+Both elements are floated to left and right to have them on the edge.
+
+Remove the border and outline. Adjusting the color of text if necessary.
+
+ 	.search-box__text:focus {
+    		color: $mainBackground;   
+	}
+
+Important is :focus-within on the search-box. The :focus on the input element is limited in functionality. When you want to change other elements than the input element itself the :focus-within pseudo class lets you make all the change when inside the box the input elememt is in focus.
+
+ 	.search-box:focus-within {
+  		background: $secondColor;
+
+		.search-box__btn {
+        		color: $mainBackground;
+    		}
+	}
+
+The button is straightfoward without an icon. If inside the <a> or <button> an icon is used you need flexbox (align-items and justify-content)or postion: relative to centere it correctly.
+
+If you want it to be a circle, then you set width=height and border-radius of 50%.
+
+ 	.search-box__btn {...}
+
+#################################
+IV.	FILTER/AUTOCOMPLETE RESULTS
+#################################
+
+SEE CODEPEN EXAMPLE
+
+The logic for autocomplete or filter is the same, what may change is what happens when you use TAB or hit enter to complete the value of the input element or simply filter items from a list that is shown below.

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<HEAD>
+<TITLE>Playing around with basics of Javascript</TITLE>
+</HEAD>
+<BODY>
+<h1>Javascipt basics and some exercises to get used to the syntax.</h1>
+<hr>
+<!-- How many characters are there in this sentence? (incl. spaces and marks) -->
+<script>
+document.write("How many characters are there in this sentence? (incl. spaces and marks)".length);
+</script>
+<hr>
+
+<hr>
+<!-- CONCATENATION: write Hello + World! and show the number of characters: -->
+<script>
+document.write ("Hello" + " World!");
+document.write (("Hello" + " World!").length);
+</script>
+<hr>
+<!-- 1. DOCUMENT WRITE -->
+<script>
+document.write("The population of India is more than 1 billion.");
+</script>
+<hr>
+<script>
+//afbeelding tonen op 20/50 procent paginabreedte
+document.write("<img src='../images/profiel.jpg' alt='profielfoto' width='20%'><br>")
+</script>
+<hr>
+<script>
+alert('hello');
+</script>
+
+<hr>
+<!-- 2. BASIC MATH  -->
+<script>
+document.write("The sum of 5 and 6 is");
+document.write(5+6);
+</script>
+
+<hr>
+<hr>
+
+<script>
+document.write("Subtracting 6 form 5 gives ");
+document.write(5 - 6);
+</script>
+
+<hr>
+<hr>
+<script>document.write("Multiplying 6 by 5 gives ");
+document.write(6*5);
+</script>
+<hr>
+<hr>
+<script>
+document.write("Six divided by 5 is ");
+document.write(6 / 5);
+</script>
+<hr>
+<hr>
+<!-- MODULO -->
+Modulo is de rest van een deling
+<script>
+document.write("The remainder (de rest) when 19 is divided by 7 is ");
+document.write(19%7);
+</script>
+<hr>
+<!--Je kan dat ook met het aantal characters in een strings:
+"hello".length % "hi\\".length geeft:-->
+<script>
+document.write("hello".length % "hi\\".length);
+document.write ("<br/>(oftewel de rest van 5 gedeeld door 3)");
+</script>
+
+<hr>
+<script type="text/javascript">
+var christmass = "Merry Christmass to you all!";
+var newyear = " And a very Happy New Year too!";
+
+document.write(christmass + newyear);
+
+</script>
+<hr>
+<script>
+var year = "1976, 1739, 1920";
+var events = "revolutions";
+document.write("Somethings happened in the years " + year + ", they were years with " + events +". No, no really.");
+
+var year = "1789, 1861, 1934";
+document.write(" Oops, I was wrong and updated the years. " + year + " were the actual year with " + events);
+</script>
+
+<hr>
+<script type="text/javascript">
+var age;
+var gender;
+document.write(age + " " + gender + "<br/>");
+// null means "explicitly nothing"
+var currentPlayer = "Joris";
+document.write(currentPlayer + "<br/>")
+var currentPlayer = "null"; //game over
+document.write(currentPlayer + "<br/>")
+</script>
+<hr>
+<h3>Javascipt methods</h3>
+<p>See alert and prompt</p>
+
+<!-- JAVASCRIPT METHODS -->
+<script type="text/javascript">
+// About methods: they are basically like variables that store predefined
+// Javascript code, that offer built-in functionality
+
+//alert (see above)
+//console.log (), this will print to the Javascript console. This has no
+//end-user purpose
+
+//prompt, prompts the user for input
+// prompt("What is your age?"); You can store that input into a variable!
+var userName = prompt("What is your name?");
+document.write("Your name = " + userName);
+</script>
+</BODY>
+</HTML>

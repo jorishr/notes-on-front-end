@@ -1,0 +1,288 @@
+<!-- 
+    ##############
+    INPUT ELEMENTS
+    ##############################
+        A.	TEXT INPUT
+        B.	TEXT AREA
+        C.	EMAIL
+        D.	RADIO BUTTONS
+        E.	CHECK BOXES
+        F.	DROPDOWN MENU'S IN FORMS
+        G.	DATA-LIST
+        H.	SEARCH
+        I.	TEL
+        J.  DATE
+        K.  FILE UPLOADS
+        I.  CLEAR INPUT FIELD ON FOCUS
+    ##############################
+
+    ##############
+    A.  TEXT INPUT
+    ##############
+
+    Text <input type="text"> always creates some kind of interactive user input
+    like text, email, password, etc.
+
+    Conceptually, an <input/> element represents a VARIABLE that gets sent to
+    the backend server. The NAME attribute is the identifier for this variable,
+    and the VALUE is whatever the user entered into the text field or the value
+    that is pre-defined witht the value="" attribute.
+
+-->
+    <form action="" method="">
+        <div class='form-row'>
+            <label  for='firstname'>First Name</label>
+            <input  type="text" id="firstname" name="firstname" value="John" 
+                    placeholder="First name here..." required/>
+            <label  for='lastname'>Name</label>
+            <input  type="text" id="lastname" name="lastname" value="Doe" 
+                    placeholder="Last name here..." required/>
+        </div>
+    </form>
+<!-- 
+    STYLING TEXT INPUT FIELDS
+
+    Adjust the size of the text input field to the expected length of the
+    input. Thus ZIP code box should be smaller than name, for example.
+
+    Either add classes to <input class=""> elements or use the attribute 
+    selector: input[type='text'].
+
+    Other PSEUDO CLASSES can be used to modify the appearance on different 
+    states. For example, on focus you can change the text-color by using the
+    :focus selector. When an invalid email-adress is provided you can change
+    the text to red with the :invalid pseudo-selector. 
+
+    #############
+    B.  TEXTAREAS
+    #############
+
+    You can leave the browsers and users to determine the size of the text-area
+    or you set it manually the ROW and COLS attributes. To avoid resizing on 
+    the client side add css property textarea {resize:none;}.
+-->
+    <div class='form-row'>
+        <label for='abstract'>Abstract</label>
+        <textarea id='abstract' name='abstract' row='' cols=''></textarea>
+    </div>
+<!--
+    ###############
+    C.  EMAIL INPUT
+    ###############
+
+    By telling browsers that we’re looking for an email address, they can 
+    provide a more intuitive user experience. For instance, when a smartphone
+    browser sees this type="email" attribute, it gives the user a special 
+    email-specific keyboard with an easily-accessible @ character.
+
+    Use the pattern attribute to add basic validation.    
+
+    #################
+    D.  RADIO BUTTONS
+    #################
+
+    Radio buttons are a little more complex to work with than text fields 
+    because they always operate in groups, allowing the user to choose one out 
+    of many predefined options.
+
+    FIELDSET
+    Every radio button GROUP you create should be wrapped in a <fieldset>, 
+    which is labeled with a <legend>.
+
+    Associate a <label> element with each radio button.
+    
+    Use the same NAME attribute for each radio button in the group, otherwise 
+    the server will not know they belong together.
+
+    Use different VALUE attributes for each radio button.
+-->
+    <fieldset>
+        <legend>Choose your radio station</legend>
+        <label  for="radio1">Radio1</label>
+        <input  type="radio" name="radiolist" id="radio1"
+                value="radio1" checked />
+        <label  for="radio2">Radio2</label>
+        <input  type="radio" name="radiolist" id="radio2" value="radio2"/>
+    </fieldset>
+
+<!-- 
+    STYLING RADIO BUTTONS
+
+    The <fieldset> adds a border and margins that don't look very stylish in
+    most browser.
+
+    Flexbox is not supported for <fieldset> thus you have to rely on floats and
+    position: relative to position elements inside it.
+
+    ##############
+    E.  CHECKBOXES
+    ##############
+
+    DIFFERENCE WITH RADIO BUTTONS
+    
+    Radio buttons are grouped into a set in which only one radio button can be
+    selected at a time, whereas checkboxes allow you to turn single values on 
+    and off. 
+    
+    Where multiple controls exist, radio buttons allow only ONE to be 
+    selected out of them all, whereas checkboxes allow multiple values to be 
+    selected.
+
+    NAME/VALUE
+
+    If a checkbox is UNCHECKED when its form is submitted, there is NO VALUE
+    SUBMITTED to the server to represent its unchecked state. Thus the server
+    does not receive any variable to work with at all.
+
+    When the checkbox is CHECKED the variable with NAME and VALUE is submitted
+    to the server with the default value of value="on". You can specify that 
+    value as you see fit.
+-->
+    <div class='form-row'>
+        <label for='available' class='checkbox-label' >
+            <input type="checkbox" id="available" name="available" value="true"/>
+            <span>I’m actually available the date of the talk</span>
+        </label>
+    </div>
+<!--
+    STYLING CHECKBOXES
+
+    By putting the <input> inside the <label> tag the layout on a SINGLE LINE
+    becomes easier as you can use width: auto on the label. This will make the
+    label as wide as the width of the content elements.
+
+    ###################
+    F.  DROPDOWN MENU'S
+    ###################
+
+    The <select> element represents the dropdown menu, and it contains a bunch 
+    of <option> elements that represent each item in the dropdown list.
+
+    Important: to keep the first option value out of the database use the 
+    attributes: selected disabled.
+-->
+    <div class='form-row'>
+        <label for='t-shirt'>T-Shirt Size</label>
+        <select id='t-shirt' name='t-shirt'>
+            <option value='xs'>Extra Small</option>
+            <option value='s'>Small</option>
+            <option value='m'>Medium</option>
+            <option value='l'>Large</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="birthday">Birthday:</label>
+        <select id="birthday" name="birthday" >
+            <option value="0" selected disabled>Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+        </select>					
+        <select name="birthday">
+            <option value="0" selected disabled>day</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <select name="birthday">
+            <option value="0" selected disabled>year</option>
+            <option value="1983">1983</option>
+            <option value="1984">1984</option>
+        </select>
+    </div>
+<!-- 
+    STYLING DROPDOWN MENUS 
+
+    Dropdown menu's are hard to style because on Iphone for example it triggers
+    the system's native UI.
+
+    It’s usually best to keep the custom css to a minimum and let the browser
+    determine the best way to present a <select> element.
+    
+    Try using radio buttons first or look for JavaScript UI widgets: Bootstrap 
+    Dropdowns and jQuery Selectmenu’s are common JavaScript solutions for 
+    customizing select menus.
+
+    Or better, use DATALIST instead.
+
+    ############
+    G.  DATALIST
+    ############
+
+    Datalist geeft een leeg input vak maar met een voorgedefiniëerde keuzelijst
+    via "input list". Dit is beter dan bijv. een drop-down, zeker met een lange
+    lijst potentiële waarden. Dit is enkel HTML5 en niet in IE9 en Safari, dit 
+    kan je oplossen door de <option> tags in een <select> tag te stoppen.
+-->
+    <input list="browserlist" name="browsers">
+    <datalist id="browserlist">
+        <select>
+            <option value="firefox">Firefox</option>
+            <option value="Safari">
+            <option value="Brave">
+            <option value="IE">
+            <option value="Chrome">
+            <option value="Opera">
+        </select>
+    </datalist>
+    <input type="submit">
+
+    
+<!-- 
+    ##########
+    H.  SEARCH
+    ##########
+
+    See search.txt in front-end components
+    <input type='search'>
+
+    #######
+    I.  TEL
+    #######
+    <input type="tel">
+
+    ########
+    J.  DATE
+    ########
+
+    The <input type="date"> will trigger a calendar in the browser to pick,
+    for example, a day of birth.
+
+        <input type="date" name="brthd" min="2000-01-01">
+
+    When using view templating engines to render the html you can add JS to the
+    HTML markup prefill the DATE:
+        
+        value=" <%= new Date().toLocaleDateString(('es-ES'), {year: 'numeric', 
+        month: '2-digit', day: '2-digit'}) %>
+
+    ################
+    K.  FILE UPLOADS
+    ################
+
+    See other docs.
+
+    ##############################
+    I.  CLEAR INPUT FIELD ON FOCUS
+    ##############################
+
+    Use the ATTRIBUTE onfocus="this.value=''"; Or add a btn and js.
+
+    ##############################
+    J.  TRIGGER BTN CLICK ON ENTER
+    ##############################
+
+    If the users presses the ENTER KEY, the same action should occur as if he 
+    clicked the button next to the input element.
+
+    You select the input field in js and add an eventListener that listens for
+    'keyup' event. Prevent the default action.
+
+    If the keyCode === 13, that of the enter key, btn.click();
+
+    var input = document.getElementById("myInput");
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("myBtn").click();
+        }
+    });

@@ -1,0 +1,17 @@
+#####
+MODAL
+#####
+
+MARKUP
+The markup is straigthforward: a div with content.
+
+CSS
+By default this is container is set to display: none; and or opacity: 0;
+
+When the modal is open: z-index: 10;
+
+BLUR BACKGROUND
+
+To make the background elements blurred out you can use a box-shadow. The box-shadow does not affect other elements and does not cause scrolling. You simple use a SPREAD of 100vw.
+
+	.modal { box-shadow: 0 0 0 100vw rgba(0, 0, 0, .35) }

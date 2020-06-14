@@ -1,0 +1,234 @@
+##########################
+PARAGRAPHS STYLING IN CSS
+###############################################
+I.	PARAGRAPH MARKUP
+    		A.	MARKUP PATTERNS
+    		B.	SPAN ELEMENTS INSIDE <p>
+II.	SPACING BETWEEN PARAGRAPHS
+III.	LEADING: LINE HEIGHT
+IV.	(MAX)-WIDTH
+V.	FIRST-lETTER
+VI.	WORKFLOW
+		A.	HTML/CSS ONLY
+		B.	BOOTSTRAP
+###############################################
+
+################################
+I.	PARAGRAPHS AND CSS CLASSES
+################################
+
+    A.  MARKUP PATTERNS
+
+Follow BEM: a paragraph is always an ELEMENT part of a BLOCK. block__paragraph.
+
+Look for a pattern in the paragraphs on the site you are building or in the sections of your page. You can define a base style for paragraphs and use modifiers classes when needed.
+
+SERVER-SIDE GENERATED PARAGRAPHS
+
+When working with groups of paragraphs that may change over time it is not practical to assign BEM classes to each individual paragraph because we don't know when and how many will be created. 
+
+The solution is to create a GENERIC PARAGRAPH CONTAINER for which you set css rules that apply to the <p> and possible <a> or <span> elements that will be created by the server.
+
+ 	.container > p {...}
+	OR SASS .container { 
+ 			p {...} 
+			p a {...} 
+			p span {...} }
+
+NOTE ABOUT SASS IMPORTS
+
+If you create this generic container classes make sure to import them towards the top your main sass file. This way this generic styles becomes the default and your custom sass later on can override the properties when so required.
+
+Check in Chrome Dev Tools which styles get applied.
+ 
+    B.  P > SPAN
+
+Certain parts WITHIN paragraphs sentences need specific styling. Here too it is best to follow the BEM methodology by adding a <span> element and giving it a class as a subelement of a block. 	
+	
+ 	&__spanClass {
+	font-size: 2.0em; 
+	font-weight: bold; 
+	font-style: italic;
+} 
+
+
+################################
+II.	SPACING BETWEEN PARAGRAPHS
+################################
+
+Genoeg ruimte laten tussen paragrafen, blocken en regels geeft meteen een veel profesionelere indruk. Dit is werk voor designers, maar de basis moet je ervan begrijpen.
+
+PADDING
+
+Use padding only on the LEFT and RIGHT side of paragraphs, reserve the top and bottom for vertical spacing between the paragraph with the MARGIN property. 
+
+ 	padding: 0 20px;    
+
+On smaller screens reduce the padding to about half.
+
+VERTICAL SPACING
+
+There are two generally accepted solutions: either use a first-line indent or a margin between the paragraphs. Never both.
+
+ 	&__paragraphClass {
+ 		text-indent: 1em;
+  		margin-bottom: 0;
+ 	}
+
+ 	&__paragraphClass {
+ 		text-indent: 0;
+ 		margin-bottom: 1.5rem;
+ 	}
+
+Be consistent! If you use margin-bottom, do so on the entire page, don't switch between margin-bottom and margin-top.
+
+TEXT-INDENT AFTER TITLES
+
+When using text-indent property note that the first paragraph after a title does NOT need indenting!
+
+ 	p:first-of-type {
+ 	 	text-indent: 0;
+ 	}
+
+You can play with the FIRST LETTER of a paragraph of a text or chapter:
+
+p:first-letter {font-size: 2em; font-style:uppercase;}
+
+
+<p> AT THE BOTTOM OF A DIV
+
+If you have a <p> or other element on the bottom of a containing element it's bottom-margin will push outside the container, because it has nothing to push against. 
+
+You can mend this by giving the container a padding-bottom of just 1px. Now the bottom element in the container will push it's margin against the padding.
+
+#############################
+III.    LEADING: LINE HEIGHT
+#############################
+
+LINE HEIGHT is de ruimte tussen de regels binnenin dezelfde paragraaf. 
+
+This is also called the "LEADING" of the paragraph, that can be in/decreased. You can use 1, 1.25, or 1.5 OR a percentage based on the font-size: thus 20px font and 150% line-height corresponds to 30px.
+
+Lijnhoogte gelijk aan HEIGHT betekent dat de tekst de hele voorziene ruimte inneemt.
+
+Er zijn twee regels om te onthouden:
+
+1. voorzie genoeg ruimte: marges/padding
+2. wees consistent in de voorziene ruimte doorheen de ganse pagina
+
+
+#################
+IV.	(MAX-)WIDTH
+#################
+
+Probeer de LINE LENGTH te beperken to Max. 80 charachters. Dit bevordert de leesbaarheid en het skimmem op schermen.
+
+Especially when using flexbox it is important to set a (max-)width for every paragraph, if not on larger screens the text will become unreadable long lines.
+
+The exact width depends on the font-size but in general you can work with 66-80 charachters or about 500px. 
+
+An easy calculation is 480px wich is 30rem on standard 16px font-size. 
+
+Most monitors have a 1200px resolution thus a little less than halve is good for reading. 
+
+GUIDELINES 
+
+- use EM not REM
+
+EM represents the calculated font-size of an element, based on the font-size of the parent element. 
+
+Thus if the font-size is set at 16px, 1em will represent 16px, 2em is 32px, 10em is 160px, etc. 
+
+When using em the number of characters per line will always remain stable and you won't have to update padding or width manually each time you decide to make font-size changes. 
+
+- DESKTOP: do not exceed 24-36em, with base font-size of 16px this corresponds with a paragraph width of 384-544px.
+
+- MOBILE: do not exceed 17-18em. This is approx. 25 characters per line. Note that when setting to max-width: 100%; this will do the trick just as well.
+
+
+Note that the viewport width for small mobile devices can be as narrow as 320px. If we set aside 20px for horizontal margins (10+10), the width of the text container will be 300px. The ideal font size for these devices therefore is 300/16 = 18.75px.
+
+EXAMPLE:
+
+ 	&__textOnBigScreen {
+ 		width: 34em;
+    		line-height: 1.25;
+    		font-size: 20px;
+
+ 	&__textOnSmallScreen {
+    		width: 18em;
+    		max-width: 100%;
+		line-height: 1.25;
+    		font-size: 18px;
+
+
+##################
+V.	FIRST-LETTER
+##################
+
+Styling the first-letter is a nice visual adjustment that adds credibility. 
+
+The logic: 
+- use the pseudo element ::first-letter on the paragraph and use float:left to lift it out of the inline flow and let the rest of the text wrap around it. 
+
+- reduce line-height to avoid interference with other lines.
+- add size and weight, adjust color
+- use margin-top and margin-right to position correctly.
+
+
+##############
+VI.	WORKFLOW
+##############
+
+	A. HTML/CSS
+
+POSITIONING
+
+Paragraphs are block level elements by default. To horizontally CENTER them inside a container div you can use FLEXBOX or MARGINS left and right with margin: 0 auto;
+
+PADDING AND MAW-WIDTH
+
+Set the PADDING left and right and define a max-width for wider screens and think about reducing the padding on smaller screens by defining media-queries.
+
+See guidelines above for line-length,
+
+BOTTOM/TOP MARGINS
+
+Bepaal de marges tussen paragrafen. 
+
+FONT PROPERTIES AND IN-TEXT ELEMENTS
+
+De font-family and font-size worden meestal geërfd van top level elementen.
+
+Belangrijk is ook de font-weight, vooral als je het verschil wil verduidelijken met in-text elementen zoals <a> of <span>. De basis is meestal 300 en bold is 700.
+
+LEADING
+
+Increase readability by increasing the leading by setting the line-height property to 1.25, 1.5 or 1.75.
+
+FINISHING TOUCHES
+
+Play around with the text-indent property and the first-letter by usig p:first-letter {text-transform: uppercase; font-weight: 700;}.
+
+Text-align: center | justified | left | right; 
+
+Float the ::first-letter, reduce line-height to .5; double or triple the font-size and add weight. Adjust margin-top and margin-right to position correctly.
+
+
+	B. BOOTSTRAP
+
+All <p> have their margin-top removed and margin-bottom: 1rem for easy spacing.
+
+TEXT ALIGNMENT
+
+The classes text-<media>-<left|right|center|justified> can be used to have different alignments based on the type of screen.
+
+Same thing for .text-lowercase, .text-uppercase, .text-capitalize.
+
+FONT WEIGHT
+
+Classes for font-weight-bold|light|normal and font-italic.
+
+ 
+
+

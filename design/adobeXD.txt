@@ -1,0 +1,75 @@
+########
+ADOBE XD
+########
+I.	SHORTCODES AND BASIC TOOL USE
+II.	ANIMATIONS AND NAVIGATING BETWEEN TABLES
+
+
+
+###################################
+I.	SHORTCODES AND BASIC TOOL USE
+###################################
+
+ZOOM IN/OUT
+	ALT + SCROLL
+
+MOVE AROUND
+	SPACE BAR + MOUSE
+
+DUPLICATE
+	ctrl+d and drag with mouse
+
+ROTATE/SCALE ITEMS TOGETHER
+	shift+rotate/scale
+
+DRAG ON SAME LINE
+	hold shift and drag left or right
+
+SELECT/DESELECT BACKGROUND
+	hold shift and click container
+
+TOGGLE GRID
+	ctrl+shift+'
+
+SQUARE
+	shift+alt
+
+PERFECT CIRCLE/SQUAQRE
+	hold shift
+
+CENTERING ASSISTANCE
+	alt
+
+BEZIER CURVE WITH PEN
+	hold schift
+	to end it half way, hold alt and drag width to middle
+
+GROUP AND UNGROUP ITEMS
+	shift+G / ctrl+shift+g
+
+CREATE COMPONENTS
+	CTRL+K
+	Changes made in one, will update throughout the others
+	To update individually: ungroup
+
+ASSETS AND SWATS
+	Save primary and secondary color. When color is changed 	later, all elements get updated automatically.
+
+
+##############################################
+II.	ANIMATIONS AND NAVIGATING BETWEEN TABLES
+##############################################
+
+In the prototype tab you can set animations on each element, with triggers that can be time, tap, etc. 
+
+Remember that you always have an INITIAL STATE table and one or more INTERMEDIATE OR END STATES that are represented by work tables themselves.
+
+The navigation also requires a trigger. To go back and forth it may be necessary to duplicate a table an make slight changes. Put them below the original. 
+
+
+###############
+III.	EXPORTING
+############### 
+
+Export the svg files to a project folder.
+

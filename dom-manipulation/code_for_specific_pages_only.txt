@@ -1,0 +1,21 @@
+JS ORGANIZATION
+
+MAIN.JS CODE RUN ONLY ON SPECIFIC PAGES
+
+The have this script run only the pages that have the share icons you have various options: include a seperate script on each page. Or, better, make it part of the main.js file and wrap the code in a function that has an a conditional statement in it. This is escpecially useful when you want to have modular code.
+
+The challenge is to identify the pages that have or don't have social icons. The best way is to add a class to the body tag of that page. 
+
+When working with template engines however, this is more complicated as the body tag is part of the header template. 
+The workaround is to add a small script tag at the bottom of the page to add a class to the document.body.classList.add('<class>').
+
+
+JS BINARY OPERATOR
+First check if an element is found in the DOM, if not the code for that element while allowing the rest of the program to continue.
+
+button && 
+	button.addEventListener('click', (e) => {});
+clickcatcher
+	&& clickcatcher.addEventListener('click', (e) => {});
+    
+

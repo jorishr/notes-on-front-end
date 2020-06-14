@@ -1,0 +1,83 @@
+####################
+COMPONENTS AND PROPS
+####################
+I.	COMPONENTS
+II.	PROPS
+####################
+
+################
+I.	COMPONENTS
+################
+
+Conceptually, components are like JavaScript functions. They accept arbitrary inputs, called PROPS and return React elements (JSX) describing what should appear on the screen.
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+Most frequently you'll find react elements that represent DOM tags: div's, p's, input's. etc.
+
+But you can generate your own: 
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+
+When react sees these type of elements it stores the attributes in a single object: PROPS that can be referenced. Thus the attribute name is added to props and used in the function above.
+
+NOTE: Always start component names with a capital letter, if not they are treated as DOM tags.
+
+PURE FUNCTIONS
+
+All React components must act like pure functions with respect to their props. Thus you cannot modify the props.name for example inside a component function.
+
+Such functions are called “pure” because they do not attempt to change their inputs. Any changes made have to pass through the STATE protocol.
+
+
+###########
+II.	PROPS
+###########
+
+Props are set onto components the same way you set ATTRIBUTES in html:
+
+In the App.js, you add:
+
+function App(){
+	return (
+		<Counter initialCount={0}/>
+	)
+}
+
+Here the initialCount is a prop set to value 0. The {} is JS notation, you can use simple string "hello" as well, but here we want a number. This is the data that is going to be rendered inside the component. 
+
+USE IN A CLASS COMPONENT
+
+To refer to this data in the class definition file of our component use: this.props which will contain all the props you set on the component.
+
+Render JS in {} again:
+
+export default class <class-name> extends Component {
+	render(){
+		return (
+			<h1>this.props.<prop-name></h1>
+			...)}}
+
+USE IN A FUNCTION COMPONENT
+
+There are two ways to handle this: passing props as argument and then use props.<prop-name> inside the function. 
+
+Or use object destructuring: 
+	
+	export default function RecipeEdit({ recipe }) {}
+
+If there are lot of props to unpack, use use a seperate statement:
+
+export default function Recipe(props) {
+	const { id, name, cookTime, servings } = props
+	...
+}
+
+
+

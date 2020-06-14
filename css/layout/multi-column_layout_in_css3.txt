@@ -1,0 +1,26 @@
+#################
+CSS MULTI-COLUMNS
+#################
+
+Dit is nieuw in CSS3 en is een eenvoudige manier om kolommen te maken in een containing div. Ideaal voor een newspaper style layout.
+
+HTML markup is een container div met class.
+
+In CSS geef het aantal kolommen aan met column-count en column-gap voor de marges tussen de kolommen.
+
+.three-column {
+    padding: 1em;
+    column-count: 3;
+    column-gap: 1em;
+}
+
+Via media queries kan gaan van 1 column layout in mobile naar 3 column layout on desktop.
+
+The lijn die de columns scheidt kan je aanpassen met de volgende eigenschappen:
+
+        column-rule-style: solid;
+        column-rule-color: rgb(43,43,43);
+
+If you want an element to span all columns:
+
+	p.span-all {column-span: all}

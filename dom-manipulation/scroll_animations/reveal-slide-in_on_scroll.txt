@@ -1,0 +1,97 @@
+##########################
+REVEAL/SLIDE-IN ON SCROLL
+##########################
+
+A.	INTERSECTIONAL OBSERVER API
+
+The code below holds on observer function that can be used for both animations if you setup your css classes correctly. The only adjustments you have to make are in the options of the observer when you call on the SLIDERS or FADERS.
+
+I.	HTML/CSS
+
+In html give the elements you want to have this effect a class .fade-in or .scroll-reveal;
+
+In css create a class .reveal or .appear {opacity:; transform: scale() translate(), etc};
+
+The base-css code for the element should be adapted to the animations you apply. 
+
+Example for elements that FADE-IN:
+	
+	.element {opacity:0; transition: opacity 250ms ease-in-out;}
+	.element.reveal {opacity: 1;}
+
+Example for elements that SLIDE-IN:
+	
+	.element {opacity:0; transform: translateX(-50%); 				transition: opacity 250ms ease-in-out, 
+		transition: transform 450ms ease-in;}
+	.element.reveal {opacity:1; transform: translateX(0)}
+
+Thus when .element also gets a class of .reveal, the element animition will kick in.
+
+IMPORTANT
+
+If you want elements to slide-in from the side their default state may cause horizontal scrolling issues. Fix that by adding overflow-x: hidden; to the body element.
+
+II.	CREATE THE OBSERVER
+
+Select those elements in JS
+
+	const faders = document.querySelectorAll('.fade-in');
+	
+	const appearOptions = {};
+	const appearOnScroll = new IntersectionObserver(function(
+			entries,
+			appearOnScroll
+			){
+				entries.forEach(entry => {
+					if(!entry.intersecting){ return; }
+					else {
+					   entry.target
+						.classList.add('reveal');
+					   appearOnScroll.
+						unobserve(entry.target);
+					}
+				})	
+			},	
+		options);
+
+Only if the element is intersection with viewport, the code should run. Thus if the element is not intersecting, entry.intersecting === false; we return the function as we don't want anything to happen yet.
+
+When it does intersect, you add the css class.
+
+Once an element has appeared on the page, UNOBSERVE the element as the animation should only be seen once.
+
+III.	CALL THE OBSERVER
+
+Here the observer is added to an array of elements. Thus loop through the array for each element add the observer.
+
+	faders.forEach(fader => {
+		appearOnScroll.observe(fader);
+	})
+
+Adjust the options to finetune the effect: set the threshold to 1 to only have the effect start when the entire element can be inside the viewport.
+
+By adding the negative bottom rootMargin the user has to scroll down even further before the effect kicks in.
+
+	appearOptions = {
+		threshold: 1,
+		rootMargin: 0px 0px -100px 0px
+	}
+
+This second one, is what works for both appear and slide-in
+	appearOptions = {
+		threshold: 0,
+		rootMargin: 0px 0px -250px 0px
+	}
+
+
+
+SLIDE-IN
+	
+Give the html elements a class of .slide-in.
+
+	const sliders = document.querySelectorAll('.slide-in');
+	
+	sliders.forEach(slider => {
+		appearOnScroll.obeserve(slider);
+	})
+	

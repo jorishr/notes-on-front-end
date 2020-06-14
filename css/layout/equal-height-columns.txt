@@ -1,0 +1,17 @@
+####################
+EQUAL HEIGHT COLUMNS
+####################
+
+FLEX BOX: set the container to display: flex; and all colums to flex:1; 
+
+TABLES
+
+Make the container element behave like a table and set full-width to expand the whole page.
+
+	.col-container { display: table; width: 100%; }
+ 
+Make elements inside the container behave like table cells.
+	
+	.col { display: table-cell; }
+
+Make them stack on mobile screen with a media-query and revert to display: block; width: 100%;

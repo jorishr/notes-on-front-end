@@ -1,0 +1,104 @@
+#####################################
+CSS WRAPPERS AND BOOTSTRAP CONTAINERS
+#####################################
+I. 	USE CASES
+II.	WRAPPER PROPERTIES
+III.	BIG IMAGES AND WRAPPERS
+IV.	WRAPPER INSIDE WRAPPER
+V.	BOOTSTRAP CONTAINERS
+#####################################
+
+###############
+I.	USE CASES
+###############
+
+Starting on mobile you'll see that text on different sections of the page will push against the borders of the window. The solution is to apply indiviual padding to each element or each section. 
+
+But this is a re-usable feature, thus create a seperate MODULE for it. 
+
+IMPORTANT!
+In HTML seperate the page-section div and the wrapper div. The page-section div will be the root group that relates to other page-sections and determines for example the background color. 
+
+The WRAPPER div HOLDS THE CONTENT ELEMENTS of a page-section that need padding and centering, for example.
+
+########################
+II.	WRAPPER PROPERTIES
+########################
+
+	PADDING
+
+Padding left/right and use box-sizing: border-box. This way you set a max-width for the wrapper and push the elements inside.
+
+	MAX-WIDTH
+
+Avoid stretching on big monitors with a max-width: 1200px;	
+
+NOTE: you may still want to set max-width on paragraphs because of readability requirements.
+	
+	MARGIN
+
+The wrapper should be centered on the page.
+
+margin-left/right:auto
+
+##############################
+III.	MODIFIER WRAPPER CLASSES
+##############################
+
+	A.	VERTICAL SPACING BETWEEN PAGE-SECTION ELEMENTS
+
+You can create a modifier class wrapper--bottomMargin for this purpose.
+
+    &--bottomMargin{
+        margin-bottom: 3.875rem;
+    }	
+
+NOTE: use REM.
+NOTE: use less/more margin-bottom on mobile screens by adding a MEDIA-QUERY!
+
+
+	B. 	BIG IMAGES
+
+Images that take up a lot of width but don't fill the screen entirely receive their padding from the main wrapper on that page section. This will include a max-width. 
+
+You can add an additional wrapper--modifier class to specifiy a custom max-width that corresponds to the WIDTH OF THE IMAGE to avoid further stretching. Do so by putting the <img> in a seperate IMAGE CONTAINER <div>!
+
+This means you will have two wrappers: one on the main container <div> of the page-section and one wrapper on the containter <div> of the image. Avoid duplicate padding by adjusting CSS, see section IV.
+	
+############################
+IV.	WRAPPER INSIDE WRAPPER
+############################
+
+The above example of an image that has a wrapper inside a wrapper may produce duplication of padding.
+
+To off-set this effect you can put another .wrapper {} statement in the existing wrapper CSS class.
+
+The code below compiles to: .wrapper .wrappper {} and cancels out the padding only when CSS finds a .wrapper class inside an existing .wrapper in the HTML.
+
+.wrapper {
+	padding/max-with/margins
+	&--modifier
+	&__child
+	
+	.wrapper{padding:0;} 	
+} 
+
+##########################
+V. 	BOOTSTRAP CONTAINERS
+##########################
+
+Bootstrap container are a simple version of a wrapper. Especially the fixed-responsive .container which set a max-width property depending on the bootstrap media-queries.
+
+Containers are the most basic layout element in Bootstrap and are required when using the default grid system. 
+
+RESPONSIVE FIXED-WIDTH 
+
+The max-width of the container changes at each breakpoint.
+Thus .container is a basic responsive container that is especially usefull for 4K monitors to limit the page content within reasonable boundaries.
+
+.container also CENTERS the content on a page.
+
+FLUID
+<container-fluid> is een container over de ganse breedte van de viewport, zonder padding. Ideal voor page sections. Container- fluid kent geen max-width zoals de fixed responsive container. 
+
+For 4K screen you can NEST a .container-fluid inside a .container.

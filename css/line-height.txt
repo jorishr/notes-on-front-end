@@ -1,0 +1,59 @@
+
+###########
+LINE HEIGHT
+#############################################	
+	I.	LEADING
+	II.	UNITS
+	III.	VERTICALLY CENTER INLINE ELEMENTS
+#############################################
+
+The line-height CSS property sets the height of a line box. It's commonly used to set the distance between lines of text.
+
+#############
+I.	LEADING
+#############
+
+LINE HEIGHT is de ruimte tussen de regels binnenin dezelfde paragraaf. 
+
+This is also called the "LEADING" of the paragraph, that can be in/decreased. You can use 1, 1.25, or 1.5 OR a percentage based on the font-size: thus 20px font and 150% line-height corresponds to 30px.
+
+Lijnhoogte gelijk aan HEIGHT betekent dat de tekst de hele voorziene ruimte inneemt.
+
+Er zijn twee regels om te onthouden:
+
+1. voorzie genoeg ruimte: marges/padding
+2. wees consistent in de voorziene ruimte doorheen de ganse pagina
+
+
+###########
+II.	UNITS
+###########
+
+In pixels.
+In numbers.
+In percentages.
+
+NUMBER
+
+The recommended line height is set to 1.6. This is a unitless value, meaning that the line height will be relative to the font size. Thus a number that will be multiplied with the current font-size to set the line height.
+
+IN PIXELS
+
+A fixed line height in px, pt, cm, etc. For example: 25px between the lines of a paragraph.
+
+IN %
+
+A percentage of the font-size.
+
+
+##########################################
+III.	VERTICALLY CENTER AN IN-LINE ELEMENT
+##########################################
+
+Set the line-height in px to the height of the element.
+
+		.inline-center-with-line-height {
+			height: 100px;
+			line-height: 100px;
+			white-space: nowrap;
+		}

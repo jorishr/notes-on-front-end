@@ -1,0 +1,117 @@
+body {
+    background: rgba(255, 174, 0, 0.541);
+    font-family: 'Nunito', sans-serif;
+}
+
+h3 span{
+    color: orange;
+}
+
+/* 
+    ######
+    NAVBAR
+    ######
+*/
+#mainNavbar {
+    font-size: 1.35rem;
+    font-weight: 300;
+}
+
+#mainNavbar .navbar-brand {
+    color:  orange;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+#mainNavbar .nav-link {
+    color: white;
+}
+
+#mainNavbar .nav-link:hover {
+    color: orange;
+}
+
+/*  custom class    */
+#headerTitle h1{
+    color:black;
+    font-weight: 100;
+    font-size: 4rem;
+}
+
+#headerTitle h3{
+    color:white;
+}
+
+#headerTitle span{
+    color:orange;
+}
+/*  custom class    
+    Issue with 1px line when display none
+*/
+.column--hidden {
+    min-height: 0;
+}
+/* 
+    ########
+    SECTIONS
+    ########
+*/
+.content {
+    margin-bottom: 4em;
+    margin-top: 4em;
+}
+
+/*  custom class    */
+.content__text h2{
+    color:white;
+    font-size: 2.5rem;
+    font-weight: 100;
+}
+
+.content__text p{
+    color: black;
+    font-size: 1.125rem;
+    font-weight: 100;
+    line-height: 2rem;
+}
+
+/*  custom class    */
+.imageContainer {
+    margin: 0;
+    padding: 0;
+}
+.imageContainer__image {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1200px){
+    #headerTitle h1{
+        font-size: 3rem;
+    }
+    .content__text {
+        font-size: 2rem;
+    }
+}
+
+/* 
+    ##########
+    ANIMATIONS
+    ##########
+*/
+.navbar.scrolled{
+    background: orangered;
+    transition: background 500ms;
+}
+
+/* 
+    #####
+    ICONS
+    #####
+*/
+.fas {
+    color: orange;
+}
+
+
+

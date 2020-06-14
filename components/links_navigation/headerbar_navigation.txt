@@ -1,0 +1,109 @@
+######################
+HEADER AND NAVIGATION
+################################
+I.	NAVIGATION DESIGN PATTERNS
+II.	NAV ELEMENTS
+	A.	CSS STYLES
+	B.	HOVER BAR EFFECT
+III.	STICKY HEADER
+IV.	DROP-DOWN MENU
+################################
+
+########################
+I.	NAVIGATION PATTERN
+########################
+
+The <header> section will typically contain a log or brand name and a <nav> element with the main navigation components.
+
+Design considerations: lower the opacity or ajdust the font-weight of the navigation elements to contrast with logo (visual hierarchy). Colored bar or plain background color? 
+Check for even amount of white space about and between elements.
+
+The navigation bar is part of the site-header but since it is a component block that may be re-used on other pages, it deserves it's own _partial.scss file and BEM block (primary-nav).
+
+Group nav elements such as menu-link(nav) and button into a menu-container-div. This can easily be set to display: none for mobile.
+
+The wrapper that is used on other sections of the site should also be applied here in a seperate div.
+
+An example from the 'Travel Site' project:
+
+  <header class="site-header">
+    <div class="wrapper">
+    	<div class="site-header__logo"></div>
+	<div class="site-header__menuIcon"></div> (HamburgerMenu)
+	<div class="site-header__menuContent></div>
+		<nav class="primary-nav">
+			<ul>
+
+The positioning of the main components can be done with floats. The logo floats left, the menuContent floats right. And the clearing can be done on the .site-header with a pseudo element ::after{content:''; display:table; clear:both;}
+
+#########################
+II.	NAV ELEMENTS: UL-LI
+#########################
+
+For the <nav> elements you use <ul> <li> and <a> INSIDE the <li> for the links and text.
+
+A.	CSS STYLES 
+	
+	ul { padding: 0;margin: 0; )
+	li { list-style:none; display:inline-block}
+
+POSITIONING WITH FLOATS
+
+Float the <li>'s and clear on the parent <ul> with ::after pseudo element.
+
+	ul::after{
+		content: ''
+		clear: both
+		display: table	
+	}
+
+SEPERATING LI ELEMENTS
+
+Use padding and be consistent: either left or right. If you need to avoid padding on the outer left or right element you can use 
+the pseudo class :last-child or :first-child to set the padding back to zero.
+
+
+ADJUSTING <a> tags inside <li>'s
+
+The height of the <a> tag may be off. To bring them to the correct height use padding-top. The general properties should include display:block and text-decoration:none.
+
+Also play around with background-color of a-tags to create better user experience. Especially the opacity in rgba(blue, .5) or transparent when not needed anymore.
+
+text-transform: uppercase;
+
+letterspacing: .08em; | .1em;
+
+
+B.	HOVER BAR EFFECT
+
+Add a pseudo element to the a-tag that has width zero and is fixed to the top of the <a> element. When you :hover the width transitions to 100%.
+
+	nav a::before {content:''; display:block; height:5px; 				width:0; position:absolute; top:0;transition: all 				ease-in-out 250ms;}
+	nav a:hover::before {width: 100&}
+
+###################
+III.	STICKY HEADER
+###################
+
+Absolute positioning can be usefull to overlap the HERO content. Set top:0; and z-index to bring to the front. You may have to adjust the hero-content with padding-top to correct for header-content.
+
+The sticky header effect is achieved with position:fixed; top:0; and z-index set to a positive number.
+
+
+####################
+IV.	DROP DOWN MENU
+####################
+
+See codepen for working example. The HTML markup is a <ul> for the main menu and inside one of the <li>'s you NEST another <ul>
+
+The nested <ul> gets a class and it is set to display: none;
+
+When :hover over the parent <li> you define the style for the drop-down menu <ul> with display: flex and position: absolute; plus a background.
+
+To avoid the parent <li> being hidden by the drop-down menu overlap you set a positive z-index.
+
+
+
+
+
+

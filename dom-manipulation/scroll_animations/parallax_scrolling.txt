@@ -1,0 +1,118 @@
+##################
+PARALLAX SCROLLING
+###########################
+I.	ABOUT
+II.	SIMPLE CSS
+III.	DOM MANIPULATION
+IV.	JQUERY
+V.	LAXXX LIBRARY
+###########################
+
+###########
+I.	ABOUT
+###########
+
+Parallax of bewegingsparallax is het verschijnsel dat de schijnbare positie van een voorwerp ten opzichte van een ander voorwerp of de achtergrond varieert als het vanuit verschillende posities bekeken wordt.
+
+################
+II.	SIMPLE CSS
+################
+
+If you have hero section with a background: url(); you can easily create a parallax-like effect with the following property:
+
+	background-attachement: fixed;
+
+The default value is scroll and making it fixed does the trick.
+
+######################
+III.	DOM MANIPULATION
+######################
+
+A.	DOM EVENT: SCROLL
+
+	window.addEventListener('scroll', function(e) {...});
+
+B.	MANIPULATE STYLE ATTRIBUTES
+
+Basically, what you do is 'on scroll' you MANIPULATE the style attributes of a given element. Especially useful is the TRANSFORM property and the TRANSLATE3D value.
+
+You can easily log the style attributes in the console:
+
+	console.log(<element>.style);
+
+To move the element 50px down:
+
+	const target = document.element.querySelector('.<class>')
+	target.style.transform = 'translate3d(0px, 50px, 0px)';
+
+The actual parallax effect however requires strengthening the illusion whereby the amount scroll relates to movement of the on-page element.
+
+C.	MEASURING SCROLL
+
+The VERTICAL scroll is represented by the property pageYOffset on the window. The HORIZONTAL scroll by the pageXOffset.
+
+	let scrolled = window.pageYOffset;
+
+To multiply the effect, use another variable that becomes the source of the translate value.
+
+	let rate = scrolled * -0.5;
+	
+	target.style.transform = 'translate3d(0px, ${rate}px, 0px)';
+
+D.	MULTIPLY FACTOR
+
+You hard code a rate of multiply factor or you set different value for each element that you manipulate. Therefore you add a DATA ATTRIBUTES in the html.
+
+	<li class="sroll" data-direction="vertical" data-rateY="2">
+	<li class="sroll" data-direction="vertical" data-rateY="-1">
+	<li class="sroll" data-direction="horizontal" data-rateX"3">
+
+In your JS you can access those with <element>.dataset.<name>
+
+	let posY = target.dataset.rateY;
+	let posX = target.dataset.rateX;
+
+    	if(target[i].dataset.direction === 'vertical'){
+     		target[i].style.transform = 
+			`translate3d(0px, ${posY}px, 0px)`;
+    	}
+
+See CODEPEN for full code example. 
+
+############
+IV.	JQUERY
+############
+
+The principle is the same. You have a background image scroll at a different speed than the page scroll through multiplying it with a factor.
+
+In html add a class .parallax--bg, adding this class to other elements makes it re-usable. Note: in that case you need to add a loop or forEach to the js code.
+
+You can do the same with a <div> box. but then you have to be really carefull with the speed and use a very small multiplier so that effect become very subtile. Here you use the position:absolute; and top:; property. If top:; was not zero you have to add that to your calculation, if not it will jump before adding the parallax.
+
+In jquery the you can access the window scroll position through the function scrollTop().
+
+Next you update the background-position property. This is set in css to be center. You can add values to it, so it will remain centered horizontally but on the Y-axis pixels will be added in function of the multiplier you set based on the scroll height.
+
+$(window).sroll(function(){
+	parallax();
+});
+
+	function parallax(){
+		let windowScroll = $(window).scrollTop();
+
+		$('.parallax--bg').css('background-position', 
+			`center ${windowScroll}*0.75px`);
+
+		$('.parallax--box').css('top', 
+			`-5+${windowScroll}*0.005em`);
+	}
+
+###########
+V.	LAXXX
+###########
+
+The LAXXX library offers a lot of predefined animations on scroll.
+
+https://github.com/alexfoxy/laxxx
+https://codepen.io/designcourse/pen/ExxKPYO
+

@@ -1,0 +1,110 @@
+########
+DARKMODE
+#################
+I.	CSS SETUP
+II.	JS LOGIC
+III.	DARKMODE.JS
+#################
+
+###############
+I.	CSS SETUP
+###############
+
+REFERENCE
+
+Exhaustive tutorial: 
+https://medium.com/@mwichary/dark-theme-in-a-day-3518dde2955a
+
+The easiest way to keep thing clear is to use CSS variables.
+
+The :root color scheme is setup with css variables. The darkmode class is an adaptation of those variables. Next you use JS to toggle the class on and off and to manipulate local storage.
+
+:root {
+  --clr-light: #fdffc4;
+  --clr-dark: #00332a;
+  --clr-primary: #dbffa2;
+  --clr-secondary: #c3fcf2;
+  --clr-accent: #ff7750;
+
+  --foreground: var(--clr-dark);
+  --background: var(--clr-light);
+
+  --ff-title: "Playfair Display", serif;
+  --ff-body: "Assistant", sans-serif;
+}
+
+.darkmode {
+  --clr-light: #fdffc4;
+  --clr-dark: #00332a;
+  --clr-primary: #202302;
+  --clr-secondary: #00100d;
+  --clr-accent: #ff7750;
+
+  --foreground: var(--clr-light);
+  --background: var(--clr-dark);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--ff-body);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+
+##############
+II.	JS LOGIC
+##############
+
+//	You need to select the btn that toggles the dark mode.
+	
+	const darkModeToggle = document.querySelector('#dark-mode-	toggle');
+
+//	You need to check the local storage for existing settings. 	when the site is loaded the js should check if the 	localStorage contains previously stored settings:
+
+	let darkMode = localStorage.getItem('darkMode');
+
+	if (darkMode === 'enabled') {enableDarkMode()};
+	
+	NOTE: use let, not const because it will be update by the 	user input
+
+//	define a function with actions to perform when turning dark 	mode on.
+		  	1. add the class to the body
+			2. update the localStorage	
+
+	const enableDarkMode = () => {
+		document.body.classList.add('darkmode');
+		localStorage.setItem('darkMode', 'enabled');
+	}
+
+	NOTE: the name and the value of the localStorage element can 	be freely chosen.
+
+//	define a function with actions to perform when turning dark 		mode off.
+
+	const disableDarkMode = () => {
+		document.body.classList.remove('darkmode');
+		localStorage.setItem('darkMode', null);
+	}
+	NOTE: the value can be set to disabled as well.
+
+
+//	An event listener that when btn is clicked performs one of 	the above functions.
+
+	darkModeToggle.addEventListener('click', () => {
+		darkMode = localStorage.getItem('darkMode');
+		// var defined above
+		if (darkMode !== 'enabled'){
+			enableDarkMode();
+		} else { disableDarkMode(); }
+	});
+
+
+#################
+III.	DARKMODE.JS
+#################
+
+Darkmode.js is an external library that does the same thing but can be applied to existing sites without having to pick the color schemes in detail.
+
+https://dev.to/wgao19/night-mode-with-mix-blend-mode-difference-23lm
+

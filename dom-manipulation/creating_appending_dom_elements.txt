@@ -1,0 +1,21 @@
+
+Instead manually going through the motions every time, use helper functions.
+
+function createNode(element) {
+    return document.createElement(element); 
+};
+
+function append(parent, el) {
+    return parent.appendChild(el); 
+};
+
+Inside the function where you actually create the elements:
+
+	let li = createNode('li')
+      span = createNode('span');
+
+	li.innerHTML = person.name;
+      span.innerHTML = person.email;
+
+      append(li, span);
+      append(ul, li); 

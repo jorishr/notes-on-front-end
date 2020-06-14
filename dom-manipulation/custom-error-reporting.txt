@@ -1,0 +1,14 @@
+###############################################
+DEBUG ERROR REPORTING FOR DOM MANIPULATION CODE
+###############################################
+
+At the BOTTOM of the JS file you can add custom error reporting to generate custom errors if something is missing.
+
+This may seem redundant but makes debugging at a later stage much more efficient.
+
+EXAMPLE
+if(!ul) throw new Error('Could not find <CSS selector>')
+if(!btn) throw new Error('Could not find <CSS selector>')
+if(!form) throw new Error('Could not find <CSS selector>')
+
+This code must be at the bottom of the js file as the error generation may interfere with other code that does run correctly.

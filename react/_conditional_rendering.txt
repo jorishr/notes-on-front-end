@@ -1,0 +1,58 @@
+#####################
+CONDITIONAL RENDERING
+#####################
+
+OPERATORS
+
+Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators.
+
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {return <UserGreeting />;}
+  return <GuestGreeting />;
+}
+
+ReactDOM.render(
+  <Greeting isLoggedIn={false} />,
+  document.getElementById('root')
+);
+
+
+VARIABLES
+
+You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn’t change.
+    
+	if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick} />;
+    }
+
+INLINE LOGICAL OPERATORS
+
+In the example below you write {<condition> && <element2render>}. If the condition is true, the second part of && is evaluated.
+
+function Mailbox(props) {
+  const unreadMessages = props.unreadMessages;
+  return (
+    <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+    </div>
+  );
+}
+
+
+Another method for conditionally rendering elements inline is to use the JavaScript conditional operator condition ? true : false.
+
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> 	logged in.
+    </div>);}
+

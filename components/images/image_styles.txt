@@ -1,0 +1,110 @@
+##################
+CSS STYLING IMAGES
+###########################################################
+I.	BASIC MARKUP AND STYLING
+II.  	BORDER-RADIUS FOR IMG INSIDE A DIV (ONLY CHILD IS IMG)
+III.	ADVANCED POSITIONING
+IV.	SECTION BACKGROUND IMAGE WITH SOLID LINE SEPERATOR
+V.	ANIMATIONS
+###########################################################
+
+############################
+1.  BASIC MARKUP AND STYLING
+############################
+
+With future ANIMATIONS or ADVANCED POSITIONING in mind it may be best to put the <img> element inside a container <div>.
+
+To avoid img forcing the browser to scroll horizontally because they are too wide, set a max-width of 100% and let the height be automatically calculated based on the image inherit dimensions.
+ 
+	img { max-width: 100%; height: auto; }
+
+
+###################
+II.	BORDER-RADUIS
+###################
+
+Border-radius can applied directly to an <img> element for rounded corners OR can be set on the containing <div>.
+
+Set the width and height of the div equal to the width and height of the image (this works best with square images).
+
+Apply border-radius to the div.
+Example: image as a circle 
+
+    <div class="imgContainer">
+        <img src="" alt="" width="100">
+    </div>
+
+    imgContainter { border-radius: 50px; }
+
+##########################
+III.	ADVANCED POSITIONING
+##########################
+
+Example: pull up an image half its height outside the container. 
+
+<div class="container">
+    <div class="container__photo">
+        <img height="100">
+    </div>
+    <h1>Name</h1>
+    <p>Description</p>
+</div>
+
+.container { padding-top: 50px; }
+.container__photo {
+	transform: translateY(-50px);
+   	margin-bottom: -50px;
+
+OR 	position: relative;
+     	top: -50px; 
+}    
+
+This re-positioning has NO effect on the other elements inside the 
+containter div. They will remain in place as if the img was still at its original position. This creates an unwanted gap.
+
+To pull these items up: use negative bottom margin on the img div, equal to the number of pixels you pulled it up.
+
+NOTE: this may create a problem with the elements positioned above. Therefore you can add "padding-top" equal to the size of the image that sticks out.
+
+
+########################################################
+IV.	SECTION BACKGROUND IMAGE WITH SOLID LINE SEPERATOR
+########################################################
+
+This has two components:
+- container div of the image: border-bottom property 
+- mind the gap: set image css to display: block;
+
+NOTE: default for images is inline and in-line elements get assigned a little gap or whitespace below the line because of characters such as the letter "g". Use display:block; the remedy this.
+
+    <div class="section-container">
+        <div class="container__photo">
+            <img height="100">
+        </div>
+        <h1></h1>
+        <p></p>
+    </div>
+
+    .section-container { border-bottom: 10px; }
+    .container__photo { display: block; }
+
+#################################
+V.	ANIMATION: IMG ZOOM EFFECTS
+#################################
+
+MARKUP
+
+The <img> has to be inside a <figure> element and container <div>.
+The container needs to have a set width and height.
+
+The <figure> element comes with margins that you best set to 0.
+
+The <img> gets a width: 100%;
+
+LOGIC
+
+When you "zoom" you enlarge the image through setting a width of more than 100% or a transform: scale(). This will create an overflow on the <figure> element, thus you set that to overflow:hidden;
+
+You can transition the animation as you please.
+
+For working example see CODEPEN.

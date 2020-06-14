@@ -1,0 +1,95 @@
+BACKGROUND IMAGES
+
+
+/* 5. FULL BLEED BACKGROUND IMAGES */
+/*
+A. IN HTML
+- create a container <div class="container"< or <section class="container">
+
+- use an empty div inside the container:
+    <div class="background-image"
+         style="background-image: url();"></div>
+B. IN CSS
+- set the .container to position: relative
+- set the .background-image div to position: absolute, top:0; left:0;
+- the background-image is now relative-absolute
+
+- set .container height: 100vh;
+- set .background-image height:100%;, width:100%;
+- set .background-size: cover; this resizes the background image to cover the
+entire container, could cut edges.
+*/
+
+
+METHOD 1
+
+A. IN HTML
+- create a container <div class="container"< or <section class="container">
+
+- use an empty div inside the container:
+    <div class="background-image"
+         style="background-image: url();"></div>
+
+B. IN CSS
+- set the .container to position: relative
+- set the .background-image div to position: absolute, top:0; left:0;
+- the background-image is now relative-absolute
+
+- set .container height: 100vh;
+- set .background-image height:100%;, width:100%;
+- set .background-size: cover; this resizes the background image to cover the
+entire container, could cut edges.
+
+- set .background z-index: -1;
+- use a background-color that looks like the image to avoid flickering when
+loading.
+
+
+METHOD 2
+
+IN HTML: just assign a class to a div
+IN CSS: 
+ background: url("/assets/images/testimonials-bg.jpg") top center no-repeat;
+    //align vertically: top - horizontally: center
+ background-size: cover; 
+    //stretches the image to always cover the containing div
+
+IMPORTANT NOTE
+For responsive design the background-image property may not display the same as on desktop. Therefore an alternative approach with a <img> element inside a <div> may give you more and better options for letting the image shine through correctly. 
+
+The text or other elements you may want on top can be set inside another <div> an positioned absolutely.
+
+METHOD3: USE A ::pseudo element on the container and add a background to it. Blur the background and reveal on hover.
+
+.container::before {background-image: url(); background-size: cover; filter: blur(10px);}
+
+.container:hover::before {filter: blur(0);}
+
+III.	BACKGROUND IMAGES AND WRAPPERS
+
+If you have a background image that cover the entire section the wrapper cannot be set on the same div because it would add padding left en right and so avoid the background image to fill the entire width of the screen.
+
+Therefore, add a another wrapper div.
+
+
+OTHER BACKGROUND properties
+background-size: contain; resize the background image to make sure the image
+is fully visible
+background-size: 100%; of the parent container
+background-size: auto; original size, default
+
+background-repeat:no-repeat;
+
+background-origin: border-box: begint tegen de border aan, link boven.
+content-box (begint rond the content, niet tegen de border of padding)
+
+background-clip: The background-clip property defines how far the background
+should extend within an element. default: border-box
+background-clip: content-box;
+
+Gebruik background-clip: content-box; in combinatie met
+background-position: center;
+
+NOTE: Background images on mobile
+consider the fact that on mobile screen their may not be enough space for the background image to shine through. Plus, the background image consumes data. Thus consider replacing it with a white or colored background.
+

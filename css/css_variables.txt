@@ -1,0 +1,148 @@
+#############
+CSS VARIABLES
+#########################################
+I.	DEFINE VARIABLES
+II.	APPLY VARIABLE VALUES TO PROPERTIES
+III.	MODIFIERS
+IV.	CSS/SASS FALLBACK OPTIONS
+#########################################
+
+REFERENCE
+
+A series exploring CSS Variables by Kevin Powell
+
+https://www.youtube.com/playlist?list=PL4-IK0AVhVjOT2KBB5TSbD77OmfHvtqUi
+
+######################
+I.	DEFINE VARIABLES
+######################
+
+The can be defined at the html element level as it is the root element of the page, but it :root is higher specificity and it keeps custom variables seperate from other html properties.
+
+Note, they cascade if you put them in the root. If defined inside another class for example, it can not be applied throughout other elements.
+
+The biggest advantage of using custom css variables is that you can have all the CONTROLS about fonts, spacing and colors in one place, at the top of a larger document.
+
+:root {
+  --clr-light: #fdffc4;
+  --clr-dark: #00332a;
+
+  --clr-primary: #dbffa2;
+  --clr-secondary: #c3fcf2;
+  --clr-accent: #ff7750;
+
+  --foreground: var(--clr-dark);
+  --background: var(--clr-light);
+
+  --ff-title: "Playfair Display", serif;
+  --ff-body: "Assistant", sans-serif;
+
+  --sec-padding: 3em;
+}
+
+#########################################
+II.	APPLY VARIABLE VALUES TO PROPERTIES
+#########################################
+
+You can use it for colors but also for recurring padding patterns, like section-padding.
+
+To apply the variables to an element property use the var() value.
+
+	.class { color: var(--clr-primary) }
+
+###############
+III.	MODIFIERS
+###############
+
+Three cards that have a primary color as defined in the root. But it has a MODIFIER CLASS that changes the variable to make that card standout:
+	
+	.card--important { --primary-clr: var(--accent-clr)}
+
+With just one line of css you can change multiple elements to the --accent-clr which is also defined in the :root.
+
+MEDIA QUERIES
+
+At the start of the media-query you redefine the :root variables you want to have adjusted, and that's it. You don't have change individual properties.
+
+:root {
+	--fs-s: .8rem;
+	--fs-m: 1rem;
+	--fs-l: 1.2rem;
+}
+
+h1 {font-size: var(--fs-l)}
+h2 {font-size: var(--fs-m)}
+p {font-size: var(--fs-s)}
+	
+
+@media min-width(1200px) { 
+	:root {
+		--fs-s: 1rem;
+		--fs-m: 1.2rem;
+		--fs-l: 1.4rem;
+	}
+}
+
+###############################
+IV.	CSS/SASS FALLBACK OPTIONS
+###############################
+
+Lack of browser support: use the cascade. On the element properties add the fallback color or font-size BEFORE the use of the var().
+
+	h1 {
+		color: red;
+		color: var(--primary-clr)
+	}
+
+This obvisously not very efficient. A better way of working is to use a SASS FUNCTION and MIXIN.
+
+A.	THE SASS FUNCTION
+
+First you define the variables as SASS VARIABLES, then auto generate CSS VARIABLES with a css function.
+
+Since the SASS VARIABLES will be turned into regular css automatically by the pre-processing, those will be the fallback options, while modern browsers will use the CSS VARIABLES.
+
+$vars: (
+	blk: #252525,
+ 	yelw: #e9d20f
+);
+
+:root {
+	@each $property, $value in $vars {
+		--#{$property]: #[$value];
+	}
+}
+
+Note that you have to use interpollation syntax to make sass read the actual names of the properties and their values when generating the css variables.
+
+B.	THE SASS MIXIN
+
+To impliment this when writing the properties for elements you use a mixin called VAR that automatically write the fallback property AND the variable notation.
+
+@mixin var($property, $variable){
+	#{$property}: map-get($vars, $variable);
+	#{$property}: var(--#{$variable});
+}
+
+
+Thus, the first line is will turn out as the property: value; and the second line will generate the property: var(--variable);
+
+Example:
+To setup the color property for the heading h1 you use:
+
+h1 {
+	font-size: 2rem;
+	@include var(color, blk);
+}
+
+This will compile to regular css as:
+
+
+h1 {
+	font-size: 2rem;
+	color: #252525;
+	color: --var(blk);
+}
+ 
+ 
+

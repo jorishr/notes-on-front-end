@@ -1,0 +1,22 @@
+###########
+VIRTUAL DOM
+###########
+
+The virtual DOM is a data structure stored by React that tracks changes from one render state to the next. 
+If a change is detected (through setState()), the actual browser DOM is updated, called RECONCILIATION.
+
+DECLARATIVE CHANGES
+
+Declaration in React, is this. You declare the changes you want to see through setState() and don't have to worry about the actual changes that happen in the DOM. That reconcilation process is entirely handled by React.
+
+SYNTHETIC EVENTS
+
+All browsers events are supported but it offers unified API accross all browsers.
+
+REFS
+
+Refs are direct references to DOM elements. This goes against the React setup whereby all elements are updated indirectly through the setState() and reconciliation via the Virtual Dom.
+
+Use cases: manage focus state, text selection, media playback or integration with third party libraries (D3).
+
+Most of the time however, there will be bette solution available.

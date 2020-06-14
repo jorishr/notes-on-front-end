@@ -1,0 +1,272 @@
+/*
+  ##########
+  CSS BASICS
+  ##########
+    1. ABOUT CSS
+    2. INLINE AND INTERNAL CSS
+    3. CSS BOXMODEL
+      A.  BORDERS
+      B.  PADDING
+      C.  MARGINS
+    4. CSS OVERRIDES
+    5. WIDTH AND HEIGHT OF BLOCK LEVEL ELEMENTS
+    6. INHERIT/INITIAL
+
+  ############
+  1. ABOUT CSS
+  ############
+
+  CASCADE
+
+  CSS is een algoritme dat tot taak heeft de verschillende CSS of stijl
+  verklaringen uit te kiezen die kunnen komen van: a) user agent (browser)
+  b) auteur van de pagina, c) de eindgebruiker, in cascading order.
+
+  SPECIFICITY RULES
+
+  Als de oorsprong is uitgeklaard kan het zijn dat eenzelfde element wordt
+  onderworpen aan meerdere selectors. In dat geval gelden de regels van het
+  "specificity" algortime. Specificity komt NA het cascading algoritme.
+
+  DECLARATIVE LANGUAGE
+  
+  CSS is a declarative language: unlike Javascript or Python it does
+  not have to use each line of code to render. It parses every declaration
+  and what is not understood gets ignored.
+
+  NOOT: alle browsers hebben al een default styling die telkens anders is.
+  Om die tijdens het ontwerpen te resetten kan je een CSS Reset style sheet
+  downloaden en gebruiken.
+
+  INLINE / INTERNAL CSS
+
+  Style attributen kan je in elke html line gebruiken maar dit is niet 
+  praktisch. bijvoobeeld: <h1 style="border: 1px">Titel</h1>
+  
+  Inline styles hebben de hoogste prioriteit en altijd voorrang op externe CSS
+  sheets. Je kan ook een style tag in de header van een html zetten.
+
+  INHERITANCE
+
+  Probeer nested CSS te minimalizeren of te vermijden (descendant selectors), dit
+  is belastend voor de selector engine. 
+
+  Maak gebruik van inheritance: de eigenschappen die een element erft van het 
+  moederelement.
+
+  Bijvoorbeeld: het stijlen van een div. De eigenschappen die je geeft aan de
+  div, background, color, etc. zullen ook van toepassing zijn op de elementen in
+  je div,tenzij je nog specifieker aangeeft dat die element anders moeten zijn.
+*/
+<html>
+<head>
+    <title>Titel hier</title>
+  	<style type="text/CSS">
+  		li {
+	  		color: red;
+		  	border: 1px solid;
+		  }
+	  </style>
+/*
+  EXTERNAL CSS SHEETS
+  
+  Dus gebruik in de HTML header een link tag die verwijst naar een apart CSS
+  bestand met atributen rel (relation=stylesheet, type="text/CSS" en href.
+*/
+  <link rel="stylesheet" type="text/CSS" href="bestandnaam en path">
+/*
+  ################
+  2.  CSS BOXMODEL
+  ################
+
+  The CSS box model is a set of rules that define how every web page on the
+  Internet is rendered. CSS treats each element in your HTML document as a box
+  with a bunch of different properties that determine where it appears on the
+  page.
+
+  Each box element has a content, border, padding amd margin. The padding is 
+  the space between the content and the border. The margin is the space added
+  between the box(border) and other elements on the page.
+
+  Note that padding has a background color equal to the element content but 
+  margins are transparent.
+
+  Also, padding is included in the click area of an element, while margins 
+  aren’t.
+
+  BOX-SIZING
+  
+  By default in the CSS box model, the width and height you assign to an 
+  element is applied only to the element's content box. If the element has any
+  border or padding, this is then added to the width and height to arrive at 
+  the size of the box that's rendered on the screen. 
+  
+  This means that when you set width and height, you have to adjust the value 
+  you give to allow for any border or padding that may be added.
+
+  When you change this property from content-box to border-box
+  the browser will include any border and padding in the values for calculating
+  width and height. 
+  
+  Thus if you set an element's width to 100 pixels, that 100 pixels will 
+  include any border or padding you added, and the content box will shrink to 
+  absorb that extra width. This typically makes it much easier to size elements.
+
+    A.  BORDERS
+  
+  STYLE, WIDTH, COLOR
+  
+  You can set each property individually on the top, right, bottom or left.
+  The most frequently used border styles are: solid, dotted, dashed, double, 3D.
+
+      border-right: solid green 5px;
+
+  SHORTHAND CODE
+
+    border: solid red 5px;
+  
+  CIRCLE
+  
+  The border-radius property adds a rounded edge to the corners. 
+  
+  To create circles from <div>'s or images:
+  - set the radius to half the width of the element or
+  - use 50%: you'll have a circle regardless the size in px but for a perfect
+  circle width and height properties will have to be equal value.
+
+    B.  PADDING
+
+  Padding allows the content of the element to 'breath' as it creates some 
+  space around it. This is usefull fot readability but can also be used for 
+  spacing between elements without having to use specific positioning 
+  properties.
+
+  NOTE: the default styling of browsers differs, thus it is recommended to 
+  reset margins and paddings to 0 at beginning of the stylesheet.
+
+    C.  MARGINS
+  
+  Marges kunnen worden uitgedrukt in pixels maar beter is het gebruik
+  van relatieve waarden bijv. auto of 50%, 25%, em, rem, etc.
+
+  You can set margins on all sides or just specific sides of the box.
+
+  SHORTHAND
+
+  Margin with two values means the X-axis and Y-axis, thus 
+    
+    margin: 10px 20px 
+  
+  means 10px on the left and right and 20px on the top and bottom.
+
+  When using the four values the order is top, right, bottom, left.
+    
+    margin: 10px 15px 25px 30px;
+
+  When using three values the order is top, X-axis (left and right), bottom:
+    
+    margin: 10px 5px 20px 
+  
+  MARGINS VS POSITION
+
+  You can use margins instead of position:absolute; when you want to keep the
+  element inside the flow of the page and spread the element relative to 
+  oneanother.
+  
+  MARGIN DIRECTION
+
+  Het is aanbovelen marges slechts in 1 richting te gebruiken maw, gebruik
+  margin-left dwars over de pagina en margin-bottom om een item naar onder te
+  duwen. Dit maakt je code voorspelbar en makkelijker om aan te passen EN is
+  vooral van belang om wille van margin collapse.
+
+  MARGIN COLLAPSE
+  
+  The top and bottom margins of blocks are sometimes combined (collapsed) into
+  a single margin whose size is the largest of the individual margins. 
+
+  Dus bottom: 20px en top: 12px wordt 20px. 
+  
+  Bij negatieve marges is het ook de som van de grootste positieve and kleinste
+  negatieve marge. Als beide negatief zijn dan wordt de kleinste negatieve
+  marge weerhouden.
+
+      20px en -10px wordt 10px.
+      -10px en -15px wordt -10px
+  
+  Om dit verkomen kan een er een transparante div tussen zetten met een top of
+  bottom marge van 1px. Die zal dan collapsen in het grotere orgineel. Je kan
+  ook werken met pseudo elementen.
+  
+  #############################
+  4.  CSS OVERRIDES AND SUPPORT
+  #############################
+
+  Think a moment about what the site would look like without CSS,
+  or without modern features, make it resilient: How well does it fail?
+
+  For older browser that don't understand something you can use two 
+  declarations of the same property:
+
+  height: 500px; for older browsers
+  height: 100vh; 
+
+  Older browsers will use the first property and ignore the second one. The newer
+  browsers will override the first declaration.
+
+  For experimental features you can use the @support {} feature query: the css 
+  declarations inside will only run IF the browser supports them.
+
+
+  ############################################
+  5.  WIDTH AND HEIGHT OF BLOCK LEVEL ELEMENTS
+  ############################################
+
+  The height of a block element defaults to the height of the block's CONTENT. 
+  
+    <div id="outer">
+      <div id="inner">
+        <p>Where is pancakes house?</p>
+      </div>
+  </div>
+  
+  The #inner div will grow to be tall enough to contain the paragraph and the 
+  #outer div will grow to be tall enough to contain #inner.
+
+  When you specify the height or width as a percentage, that's a percentage 
+  with respect to the element's parent. 
+  
+  In the case of width, all block elements are, unless specified otherwise, as 
+  wide as their parent all the way back up to <html>; so, the width of a block 
+  element is independent of its content. Adding width: 50% yields a well 
+  defined number of pixels.
+
+  However, the height of a block element depends on its content unless you 
+  specify a specific height. So there is feedback between the parent and child 
+  where height is concerned. Adding height: 50% doesn't yield a well defined 
+  value unless you break the feedback loop by giving the parent element a 
+  specific height.
+
+  ########################
+  6. INHERIT/INITIAL/UNSET
+  ########################
+
+  The inherit keyword value causes the element to take the value of the 
+  property from its parent element. This reinforces the default behavior, 
+  and is only needed to override a previously defined rule.
+
+  Make second-level headers green */
+  h2 { color: green; }
+
+  /* ...but leave those in the sidebar alone so they use their parent's color */
+  #sidebar h2 { color: inherit; }
+
+  /*
+  INITIAL
+  Use initial to set a property to its initial value. This initial value is set
+  by the browser.
+
+  UNSET
+  Use unset to set a property to its inherited value if it inherits, or to its 
+  initial value if not.
+  */

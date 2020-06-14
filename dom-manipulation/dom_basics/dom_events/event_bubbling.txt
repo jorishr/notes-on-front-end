@@ -1,0 +1,55 @@
+########################################
+EVENT CAPTURING, BUBBLING AND DELEGATION
+########################################
+
+EVENT DELEGATION
+If you add an event listener to an element with child elements, for example a <ul>, that event gets DELEGATED or added to all children as well. This is happens through the process of either event bubbling(event propagation) or event capturing.
+
+EVENT BUBBLING
+Consider the markup of a button: body > main container > parent container > child1 (button), child2(image), child3(paragraph)
+
+The JS code adds a CLICK EVENT LISTENER to the button, but there may be also an event listener on the parent element. Which one gets executed?
+
+The priority is always for the lowest level element, in this case the button. Next, the click on the parent element will also be executed, and so on 'bubbling' further up the chain onto the body in search of other CLICK EVENT LISTENERS.
+
+If you console.log the sequence, it looks like:
+'child clicked'
+'parent clicked'
+
+
+EVENT CAPTURING
+In all modern browsers are set up to execute the event capturing first, then the event bubbling. But the JS execution defaults to EVENT BUBBLING unless you specify it otherwise. 
+
+Event capturing is top down, thus in the above example the parent click event would be executed first, then the child.
+
+jQUERY only supports EVENT BUBBLING.
+
+Vanilla JS example:
+
+DEFAULT BUBBLING
+parent.addEventListener('click', () => console.log('parent clicked'));
+child.addEventListener('click', () => console.log('child clicked'));
+
+//	-> 'child clicked'
+	-> 'parent clicked'
+
+CAPTURE, useCapture parameter:
+
+parent.addEventListener('click', () => console.log('parent clicked'), true);
+child.addEventListener('click', () => console.log('child clicked'), true);
+
+//	-> 'parent clicked'
+	-> 'child clicked'
+
+
+STOP EVENT BUBBLING
+Bubbling is convenient. Don’t stop it without a real need: obvious and architecturally well thought out. It may prevent, for example, your analytics from working.
+
+event.stopPropagation()stops the move upwards, but on the current element all other handlers will run.
+
+To stop the bubbling and prevent handlers on the current element from running, there’s a method event.stopImmediatePropagation(). After it no other handlers execute.
+
+
+
+
+

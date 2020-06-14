@@ -1,0 +1,20 @@
+###########
+MOBILE MENU
+###########
+
+When visibly extended on mobile it takes up about 60% of the width of the screen and 100vh. 
+
+The exit symbol can be an svg or empty html element that can be coded as part of the <ul>, as the first <li>
+
+	<ul class="hide-mobile show-desktop" id="nav-menu">
+      	<li class="exit-btn hide-desktop" id="exit-menu">
+           	<img src="images/exit-menu.svg" alt="exit menu">
+           </li>
+           <li><a href="#">home</a></li>
+           <li><a href="#">services</a></li>
+           <li><a href="#">about</a></li>
+           <li><a href="#">contact</a></li>
+      </ul>
+
+CURSOR
+Set the cursor to pointer when :hover over exit symbol.

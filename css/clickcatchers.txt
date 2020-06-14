@@ -1,0 +1,11 @@
+CLICKCATCHERS
+
+You can add an X to a menu or sidebar to make it go away again but there is another approach:
+
+There is a UL menu or sidebar element that comes into view and takes up width: 100%. 
+
+The first child element is the actual menu or sidebar and is visible. It may come into view with an animation through transform: translate3d(). 
+
+The second child element is a CLICKCATCHER which is transparent. To it you add a JS Event Listener and on click you close the menu/sidebar.
+
+Use flexbox to set the proportions between sidebar and clickcatcher.  

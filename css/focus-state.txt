@@ -1,0 +1,26 @@
+#####
+FOCUS
+#####
+
+The default :focus state differs by browsers and is usually not very pretty.
+
+Outlines don't affect the document flow, just as box-shadows you can make them as large as you want without an effect on surrounding elements.
+
+Focus state is important to account for people that use keyboard navigation.
+
+You can create a box around it in a custom color. This works well for TEXT-LINKS.
+
+a:focus {
+	outline: 3px red;
+	outline-offset: 2px;
+}
+
+For rounded buttons you can use TWO BOXSHADOWS to create a nice circle around the button.
+
+a:focus {
+	box-shadow:
+		0 0 0 5px <bg/white>;
+		0 0 0 10px <color>;
+}
+
+

@@ -1,0 +1,136 @@
+#####################
+GRADIENTS AND FILTERS
+#######################################
+I.	GRADIENTS
+II.	GENERIC DARK AND LIGHT GRADIENTS 
+III.	FILTER
+IV.	LIGHTBOXES AND DIMMED BACKGROUNDS
+#######################################
+
+###############
+I.	GRADIENTS
+###############
+
+Gradients are a good way to add some subtle styling to otherwise plain background colors. Gradients can be linear or radial and are set onto the background or background-image property.
+
+It is advisable to add simple backup background-color for when something goes wrong or the user has a legacy browser.
+
+ 	.div{
+ 		width:100px;
+ 		height: 100px;
+ 		background-color: blue; 
+ 		
+ 		background: linear-gradient(white, blue);
+	}
+
+NOTE: when using gradient on the body element make sure it has height or width sepcified at 100vh or 100vw.
+
+In the options you can set the color and the direction of the gradient. 
+
+VERTICAL
+
+ 	background: linear-gradient(to right, white, blue);
+ 	background: linear-gradient(to left, white, blue);
+
+HORIZONTAL
+
+ 	background: linear-gradient(to top, white, blue);
+
+DIAGONAL
+ 	
+	background: linear-gradient(to bottom right, white, blue);
+
+MULTI-COLOR
+
+ 	background: linear-gradient(to bottom right, white, blue, 			yellow, green)
+
+RADIAL
+
+FROM CENTER
+
+	background: radial-gradient(white, blue);
+
+	background: radial-gradient(to left, white, blue);
+
+	background: radial-gradient(to top, white, blue);
+
+	background: radial-gradient(to bottom right, white, blue);
+
+	background: radial-gradient(to bottom right, white, blue,  			yellow, green);
+
+
+FILL PERCENTAGE OF AVAILABLE WIDTH/HEIGHT
+
+	background: linear-gradient(45deg, red 60%, blue 60%)
+
+This will start at an angle and have red fill 60% of the screen, the blue STARTS at 60%.
+
+REPEATING GRADIENTS TO CREATE PATTERNS
+
+repeating-linear-gradient(red 0%, purple 50%) will repeat the gradient pattern every X pixels
+
+
+######################################
+II.	GENERIC DARK AND LIGHT GRADIENTS ######################################
+
+The more pratical approach to gradients is to define a custom variable in sass and apply it to your elements, independent of the color they might have. It will always add a subtle effect that always looks good.
+
+The light gradient creates a gradient that starts as fully white but 0 opacity and transition to a white with 25% opacity.
+
+The dark gradient does the same thing but in black.
+
+ 	:root {
+ 		--gradient-light: 
+ 			linear-gradient(145deg, 
+ 				rgba(255,255,255,0),  									rgba(255,255,255,.25));
+ 
+		--gradient-dark: 
+			linear-gradient(145deg, 
+				rgba(0,0,0,0), 
+				rgba(0,0,0,.25));
+	}
+
+To add this property to the style declarations use the var() function on the background-image property.
+
+	.box { 
+		background-color: green; 
+		background-image: var(--gradient-light)}
+	.box { 
+		background-color: red; 
+		background-image: var(--gradient-dark)}
+
+
+############
+III.	FILTER
+############
+
+Apply a filter to images. Examples are grayscale, blur an image (reveal on scroll, or blur on click), drop-shadow.
+
+img {
+	filter: grayscale(100%); 
+	filter: blur(5px); 
+	filter: drop-shadow(5px 8px 10px gray);
+}
+
+
+################################
+IV.	LIGHTBOX/DIMMED BACKGROUND
+################################
+
+Dim everything behind an element to focus on a certain UI element.
+
+Use an empty div as an overlay of the existing content and make it cover the entire page and add a dark transparent background:
+
+	.dimmed {
+		position: fixed; (not affected by scroll)
+		top: 0; right: 0; bottom: 0; left: 0;
+		background: rgba(0,0,0,.4) 		
+	} 
+
+The lightbox get lifted out of the normal content flow and pulled to the front with z-index.
+	
+	.lightbox {
+		position: absolute;
+		z-index: 1;	
+	}
+

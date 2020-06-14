@@ -1,0 +1,99 @@
+########################
+ADD/DELETE FUNCTIONALITY
+################################
+I.	DEFINE THE FUNCTION
+II.	APPLYING THE FUNCTIONALITY
+	A.	PROPS
+	B.	CONTEXT API
+################################
+
+##########################
+I.	DEFINE THE FUNCTION
+##########################
+Adding and deleting are updates to the STATE of the app, that update triggers React to re-render the affected components.
+Inside the App.js create a new function handleAdd(){}. 
+
+Inside you define what the new data should look like, for example:
+
+	const newRecipe = {id: uuidv4(), name: 'new'. ...}
+
+The function itself uses an instance of setState() to update existing state which is defined at the top of the App.js and consists of either an object or another value, in this example a sampleRecipes array. 
+
+The delete function is very similar but instead of amending the initial array a filter function is used to create a new array without the the item that has to be removed. 
+
+function App(){
+
+	const [recipes, setRecipes] = useState(sampleRecipes)
+
+	function handleAdd(){
+		const newRecipe = {id: uuidv4(), name: 'new'. ...}
+		setRecipes([...recipes, newRecipe])
+	}
+
+  	function handleRecipeDelete(id) {
+    		setRecipes(recipes.filter(recipe => recipe.id !== id))
+  	}
+}
+
+
+############################################
+II.	APPLYING THE FUNCTIONALITY TO A BUTTON
+############################################
+
+There are two method: (a) use the props object to pass the functions to the respective components, (b) use the context api.
+
+A.	PROPS
+
+Set both functions as props in App.js on the parent Component(the containing div) that contains the element that has to trigger the re-rendering (<button>).
+
+Now those two functions are available in the props that are passed as an argument to the function Component. 
+
+In the function component function you destructure the props object:
+
+export default function Recipe(props) {
+	const { ... , <handleFn> } = props
+  	return ( 
+	  <div>
+		<div>
+			<AnotherChildComponent handleFn = {handleFn}/>
+		</div>
+		<div>
+			<button className="" handleFn={handleFn}>
+		</div>
+	  <div>
+		... )
+}
+
+On the button, you add the attribute onClick={handleRecipeAdd} or onClick={() => handleFn(parameter)} depending on whether you need access to additional parameters.
+
+Note! If a button is nested inside another CHILD component, you need to pass this again as a prop and repeat the process.
+
+This can become tedious. Therefore, a better way is to use the context api.
+
+
+B.	CONTEXT API
+
+Setup a context for the app and add a value to it, which are the handler functions, via an object. Note that when the key: value of an object is the same, you only need to write it once.
+
+export appContext = React.createNewContext() 
+
+const appContextVal = {
+	handlerFn1
+	handlerFn12
+}
+
+Put the Components inside the <appContext.Provider> tags and pass in the value.
+
+	<appContext.Provider value={appContextVal}>
+		<Component />
+	</appContext.Provider>
+
+Inside the respective function component files you import the context.
+
+import React, { useContext } from 'react'
+import { appContext } from './App.js'
+
+const { handleFn } = useContext(appContext)
+
+<button onClick={handleFn1}><(button>
+<button onClick={() => handleFn2(param)}><(button>

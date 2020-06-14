@@ -1,0 +1,162 @@
+##########
+DOM EVENTS
+#############################
+I.	EVENTS
+II.	EVENT HANDLERS
+III.	EVENT OBJECT
+IV.	OBJECT HANDLERS
+V.	BROWSER DEFAULT ACTIONS
+#############################
+
+
+###################
+I.	COMMON EVENTS
+###################
+
+An event is a signal that something has happened. All DOM nodes generate such signals (but events are not limited to DOM).
+
+MOUSE EVENTS
+- click 		//-> mouse clicks on an element (touch -> tap)
+- contextmenu 	//-> mouse right-clicks on an element
+- mouseover  	//-> mouse cursor comes over
+- mouseout		//-> mouse cursor leaves an element
+- mousedown / mouseup 	//-> mouse button is pressed
+- mousemove 	//–> when the mouse is moved
+
+FORM EVENTS
+- submit 		//-> when the visitor submits a <form>
+- focus 		//-> when the visitor focuses on an element
+
+KEYBOARD EVENTS
+- keydown		//–> when the visitor presses a keyboard button
+- keyup 		//-> then releases the button
+ 
+DOM LOAD EVENT
+DOMContentLoaded 	//–> when the HTML is loaded and processed, 				DOM is fully built.
+
+document.addEventListener("DOMContentLoaded", function(){...});
+
+####################
+II.	EVENT HANDLERS
+####################
+
+Handlers are a way to run JavaScript code in case of user actions.
+
+HTML
+A handler can be set in HTML with an attribute named on<event>.
+
+<div class="button" onclick="runFunction()"></div>
+
+DOM ELEMENT
+
+elem.onclick = function(){...}
+
+Both methods are the same. They set the onclick property on the respective element node. Only one handler can be defined for the same event.
+
+EVENT LISTENERS
+
+element.addEventListener(event, handler, [options]);
+
+Options: 
+- once: if true, then the listener is automatically removed after it triggers.
+- capture: the phase where to handle the event. For historical reasons, options can also be false/true, that’s the same as {capture: false/true}
+- passive: if true, then the handler will not preventDefault() by the browser
+
+element.removeEventListener(event, handler, [options]);
+
+const handler = function(){...};
+
+
+##################
+III.	EVENT OBJECT
+##################
+
+When an event happens, the browser creates an event object, puts details into it and passes it as an argument to the handler.
+
+event.type		//-> type of event
+
+event.currentTarget is the element that is currently handling the event. That’s exactly the same as THIS. If an arrow function is used in the handler function you can always rely upon event.currentTarget
+
+event.target	//-> see event bubbling
+A handler on a parent element can always get the details about where the event actually happened.
+
+The most deeply nested element that caused the event is called a target element, accessible as event.target. it doesn’t change through the bubbling process, while event.currentTarget does.
+
+
+
+#####################
+IV.	OBJECT HANDLERS
+#####################
+
+We can assign not just a function, but an object as an event handler using addEventListener. When an event occurs, its handleEvent method is called.
+
+elem.addEventListener(type, {...}, [options]);
+
+class Menu {
+	handleEvent(event) {
+		switch(event.type) {
+			case 'mousedown':
+          			elem.innerHTML = "Mouse button pressed";
+          			break;
+        		case 'mouseup':
+          			elem.innerHTML += "...and released.";
+          			break;
+      	}
+  	}
+};
+let menu = new Menu();
+elem.addEventListener('mousedown', menu);
+elem.addEventListener('mouseup', menu);
+
+
+OR 
+
+class Menu {
+	handleEvent(event) {
+	let method = 'on' + event.type[0].toUpperCase() + 			event.type.slice(1);
+      this[method](event);
+    	}
+
+	onMousedown() {
+      	elem.innerHTML = "Mouse button pressed";
+    	}
+	
+	onMouseup() {
+      	elem.innerHTML += "...and released.";
+    	}
+}
+
+You construct a string that defines the method based on the event.type data. onMouseover is made by: 'on' + capitalize the m of mouseover + 'ousover' without the first letter.
+
+The handleEvent call is then: this[onMouseover](event) whereby this is the elem.currentTarget
+
+Each time you work with object you have to be careful witht the execution context of the keyword this.
+
+What is wrong with the code below?
+
+const counter = {
+	cnt: 0,
+	inc: function(){cnt++;console.log(cnt)}
+}
+
+const button = document.getElementsByTagName('button')[0];
+button.addEventListener('click', counter.inc(), false);
+
+First, the cnt++ should be this.cnt++ and console.log(this.cnt), otherwise they will be undefined.
+
+
+#############################
+V.	BROWSER DEFAULT ACTIONS
+#############################
+
+Many events automatically lead to certain actions performed by the browser.
+
+For example, a click on a form submit button initiates its submission to the server.
+
+The main way to prevent this action is to use the event object. There’s a method event.preventDefault().
+
+When using onclick nodeproperty or attribute you return false:
+
+<a href="/" onclick="return false">Click here</a>
+or
+<a href="/" onclick="event.preventDefault()">here</a>

@@ -1,0 +1,146 @@
+/* 
+	##########################################
+	POSITIONING AND DISPLAYING ELEMENTS IN CSS
+	###################################################
+		1.	HORIZONTALLY CENTERING BLOCK LEVEL ELEMENTS
+		2.	VERTICALLY CENTERING BLOCK LEVEL ELEMENTS
+		3.	VERTICALLY CENTERING INLINE ELEMENTS
+		4.	CALC() FOR CALCULATING SPACE
+		5.	CENTERING WITH CSS GRID AT BODY
+
+		REFERENCE: https://css-tricks.com/centering-css-complete-guide/
+
+	
+	###############################################
+	1.	HORIZONTALLY CENTERING BLOCK LEVEL ELEMENTS
+	###############################################
+	
+	Inline-level elements are easily centered by setting text-align: center on
+	the containing parent element. This will work for inline-block, 
+	inline-table, inline-flex, etc.
+
+	Er zijn drie manieren om blok-level elementen horizontaal te centreren:
+		
+		- margins: je zet de marges links en rechts op auto en daarmee komt het
+		blok in het centrum van het parent element te staan. OPGELET! Dit werkt 
+		enkel alleen wanneer bij blok elementen met een specifiek ingestelde 
+		breedte aanwezig is (width), is dat niet het geval dan is centreren 
+		niet nodig want default is 100% of the line.
+		
+			margin: 0 auto; 
+		
+		If multiple block-level elements need to be centered on the same row 
+		then you need to use the display: inline-block property.
+
+		- met floats kan je niet echt centreren maar het wel simuleren met 
+		pseudo elements. Zie floats doc.
+
+		- css flexbox: set the container to be a flexbox and use the 
+		justify-content:center property.
+
+	#####################################
+	2.	VERTICALLY CENTER A BLOCK ELEMENT
+	#####################################
+		
+		A.	UNKNOWN WIDTH AND HEIGHT
+
+	FLEXBOX
+
+	Set display: flex on the parent element and use either align-items: center;
+	or set the inner element you want centered to use margin: auto, as this 
+	will apply in all directions.
+
+		parentDiv {display:flex}
+			innerDiv {margin:auto}
+
+	POSITION ABSOLUTE
+
+	This is also the way to go for centering a div inside another div.
+	Set inner element to position:absolute and 50% from the top (or bottom) and
+	then pull it back up (or down) half of its own height.
+
+		innerDiv {
+			position: absolute; 
+ 			top: 50%;
+			transform: translateY(-50%);
+		}
+	
+	CSS GRID
+	
+	Set display: grid; to the parent element and use align-items: center;
+	as in the flexbox example or use the shorthand place-items: center; which
+	is shorthand for {justify-content:center; align-items:center}
+	
+	Here too the margin: auto would do the trick as well.
+
+		B.	YOU DO KNOW THE FIXED WIDTH AND HEIGHT
+	
+	Using negative margins equal to half of that width and height, after you've
+	absolutely positioned it at 50% / 50% will center it with great cross 
+	browser support. 
+	
+	Be aware of the padding if no box-sizing:border-box is used!
+*/
+		.parent {
+  			position: relative;
+		}
+
+		.child {
+			width: 300px;
+			height: 100px;
+			
+			/*padding: 20px;*/
+			
+			position: absolute;
+			top: 50%;
+			left: 50%;
+
+			margin: -50px 0 0 -150px;
+			/*margin: -70px 0 0 -170px;*/
+		}
+/*
+	#######################################
+	3.	VERTICALLY CENTER AN INLINE ELEMENT
+	#######################################
+	
+	Use equal padding top and bottom. If padding can not be used you can try
+	the line-height property on the condition you no the text will not wrap, by
+	setting it equal to the height of the inline element.
+*/			
+		.inline-element {
+ 			padding-top: 30px;
+  			padding-bottom: 30px;
+		}	
+
+		.inline-center-with-line-height {
+			height: 100px;
+			line-height: 100px;
+			white-space: nowrap;
+		}
+/*	
+	################################
+	4.	CALC() FOR CALCULATING SPACE
+	################################
+
+	Bijvoorbeeld een header van 100px en vervolgens wil je dat de div eronder
+	de ganze hoogte van de pagina beslaat, min de hoogte van de header.
+
+		height: calc(100% - 100px)
+
+	Hetzelfde voor een sidebar van 50px en main content: 
+		
+		width: calc(100% - 50px)
+
+	###############################################
+	V.	CENTER ALL ELEMENTS WITH GRID AT BODY LEVEL
+	###############################################
+	
+	Turn the body into a one column grid and center all elements inside by 
+	default.
+
+	body {
+		display: grid;
+		grid-template-columns: 100%;
+		justify-content: center;
+	}
+*/

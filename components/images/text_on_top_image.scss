@@ -1,0 +1,111 @@
+/* 
+    #################################################
+         I.  TEXT ON TOP OF AN IMAGE
+        II.  HOVER ANIMATION FOR TEXT ON TOP OF IMAGE
+    ################################################# 
+
+    ###########################
+    I.  TEXT ON TOP OF AN IMAGE
+    ###########################
+    
+    Use one container div with inside the first element an img and the second 
+    element another container div with the text. The tex container gets 
+    assigned a position absolute from the top and thus gets displayed over the
+    image.
+*/
+    <div class="container">
+        <img src="" alt="" class="container__img">
+        <div class="container__text">
+            <h1></h1>
+            <h2></h2>
+            <p></p>
+            <button></button>
+        </div>
+    </div>    
+
+    .container {
+        position: relative;
+        
+        &__text {
+            position: absolute;
+            top: 50%;
+        }    
+        &__photo {
+            display: block;
+        }
+    }
+/*
+    The other option is to use the background-image property but for responsive
+    design, an image inside a div gives more flexibility or less headaches.
+*/
+    <div class="container"></div>
+
+    .container {
+        background-image: url(link);
+    }
+/* 
+    #############################################
+    II.  HOVER ANIMATION FOR TEXT ON TOP OF IMAGE 
+    #############################################
+
+    OPACITY
+
+    When text is positioned on top an image you usually use some OPACITY for 
+    better readability. That opacity can be increased or reduced when hovering.
+
+    ADDING MOVING BORDERS WITH PSEUDO ELEMENTS
+
+    When hovering over the image border lines scale up on top, right, bottom
+    and left and cross each other in the corners.
+
+    The context will be a container div with cards. Each card is a div and 
+    insidehas each card div there is an image and a div for card__text.
+
+    It is on the .card div that we add the pseudo elements.
+
+    Both pseudo elements get set to position absolute and start at equal 
+    spacing from the four side. If you give it a background-color it will
+    fill the center of the image and only leave 1.25em border space for the
+    image to see.
+
+    The ::before element will create the bottom and top border lines.
+    The ::after element will create the left/right border lines.
+
+    On hover both get transitioned in from scale 0 to 1.
+
+    Scale(0,1) to scale(1.05,1) for ::before and scale(1,0) to scale(1,1.05) 
+    for ::after.
+*/
+.card {
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 1.25em;
+        bottom: 1.25em;
+        left: 1.25em;
+        right: 1.25em;
+        transition: transform ease-out 250ms;
+    }
+
+    &::before {
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        transform: scale(0,1);
+    }
+
+    &::after {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        transform: scale(1,0);
+    }
+      
+    &:hover::before {
+        transform: scale(1.05, 1);
+    }
+      
+    &:hover::after {
+        transform: scale(1, 1.05);
+    }
+}

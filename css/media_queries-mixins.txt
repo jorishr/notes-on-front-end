@@ -1,0 +1,121 @@
+#############################
+MEDIA QUERIES AND BREAKPOINTS
+#############################
+I.	MEDIA QUERIES
+II.	UNUSUAL SCREEN SIZES
+III.	USING MIXINS
+IV.	THREE COLUMN LAYOUTS ON MEDIUM SCREENS
+V.	BOOTSTRAP BREAKPOINTS
+
+
+###################
+I.	MEDIA QUERIES
+###################
+
+Think of media queries as a way to conditionally apply CSS rules. They tell the browser that it should ignore or apply certain CSS rules or layouts to the same HTML depending on the user’s device. 
+
+The media query uses min-width and max-width properties that are called MEDIA FEATURES and they specify the device dimensions you’re targeting.
+
+font-size: 2rem;    // base style applied untill 599px
+
+@media all and (min-width: 600px){  
+    font-size: 2.5rem;  // applied from 600px and up
+}
+
+@media only screen and (min-width:400px) and (max-width:960px) {}
+
+NOTE: only screen OR all refer to the type of device the browser is running on. Screens, all, or printed document for example.
+
+NOTE: disable viewport zooming in the head of the html doc:
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+Before mobile devices showed desktop version that were zoomable. 
+With responsive design this is no longer needed and could cause a 
+wrong version to show up.
+
+STYLE GUIDLINES FOR SMALLER SCREENS
+
+- reduce padding and margins (30%-50%)
+- reduce font-size (20%)
+- reduce button size (10%)
+- start applying the desktop layout CSS from atMedium onwards.
+
+
+##########################
+II.	UNUSUAL SCREEN SIZES
+##########################
+
+In general you can think of 6 breakpoint to work with:
+320px, 480px, 760px, 960px, 1200px, and 1600px but more and more there are devices with custom resolutions, ipad uses 970px.
+
+SOLUTIONS:
+- use a WRAPPER with a set max-width for very big screens (1600px and above)
+- apply a min-height for landscape viewing on mobile devices
+
+
+##################################
+III.	MIXINS TO STORES BREAKPOINTS
+##################################
+
+General base rules apply to the tiniest of screens. From then on you define breakpoints that are stored as mixins that can be easily re-used without typing there definition each for each use in the style modules.
+
+@mixin atSmall {
+    @media (min-width: 530px) {
+        @content;
+    }
+}
+
+@mixin atMedium {
+    @media (min-width: 800px) {
+        @content;
+    }
+}
+
+@mixin atLarge {
+    @media (min-width: 1200px) { //or around 1010px
+        @content;
+    }
+}
+
+APPLICATION EXAMPLE
+
+&__title{
+	font-size: 1.1rem; // defaults, looks good on mobile
+
+	@include atSmall{
+		font-size: 1.8rem;	// from Small onwards, this  
+	}
+}
+
+
+############################################
+IV.	THREE COLUMN LAYOUTS ON MEDIUM SCREENS
+############################################
+
+They look good on large screen and get stacked on small screens
+
+But problematic are the small columns on medium screens (tablets). If you have sections on your page that have this type of layout you can adjust the CSS of those sections to only switch to desktop version form atLarge onwards. 
+
+Thus you get a stacked layout up untill the large breakpoint, only for this particular section of the site, the rest of the site keeps using atMedium.
+
+
+###########################
+V.	BOOTSTRAP BREAKPOINTS
+###########################
+
+The bootstrap breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.
+
+Bootstrap primarily uses the following media query ranges—or breakpoints—in the source Sass files for our layout, grid system, and components.
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }

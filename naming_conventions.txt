@@ -1,0 +1,79 @@
+NAMING CONVENTIONS
+
+I. 	REFERENCES
+II.	CSS BEM
+	A.	ABOUT
+	B.	BEM SYNTAX
+	C.	BEM EXCEPTIONS	
+III.	OOCS
+
+
+I.	REFERENCES
+
+https://medium.freecodecamp.org/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849
+
+https://en.bem.info/methodology/quick-start/
+
+
+II. 	CSS BEM
+
+	A. 	ABOUT BEM
+
+BEM: Block-Element-Modifier structure. 
+
+The primary function of classes is to be a hook for CSS and JS, thus only useful to developers, not for search engines, that is what html semantics are for. 
+
+By using BEM you avoid descendant selectors, type selectors and the cascade, you create a direct relation between the element and CSS for every element. The seperation between CSS and HTML becomes cristal clear. May be tedious at first, but much better for updates one year later when you don't remember what you did.
+
+Extra advantage of BEM is it works well with SASS.
+	
+	B. 	BEM SYNTAX AND EXAMPLES
+
+Use <__> for all child elements of a block 
+
+div class="box" 
+	-> h2 class="box__title"
+	-> p class="box__text" 
+	-> img class="box__image"
+
+.box{styles}
+	&__title{font-size, color}
+	&__text{styles}
+	&__img{styles}
+ 
+Use <--> for modifiers classes. Modifiers classes make smaller changes to the default state of a block or element.
+
+div class"btn btn--blue"
+div class"btn btn--red"
+
+.btn {color: #fff}
+	&--blue{color: #blue}
+
+
+
+- example of single responsibility blocks: write a block of code that creates columns
+
+ .block {
+    &__element {
+    }
+}
+
+JS
+-use seperate js- classnames as hooks for JS code
+
+<li class="menu__item js-menu__item">
+
+
+	C.	BEM EXCEPTIONS
+
+Paragraph p-tags are not always unique but rather generic and may be changed in the future or can be powered by CMS. 
+
+Use a generic-content-container module that can be re-used. This sets the default styling for all future paragraphs since we as a developer do not control the p's and the future classes that may
+or may not be applied to it.
+
+
+III.	OOCSS
+
+As with any object-based coding method, the purpose of OOCSS is to encourage code reuse and, ultimately, faster and more efficient stylesheets that are easier to add to and maintain.
+
+

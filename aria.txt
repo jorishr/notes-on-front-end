@@ -1,0 +1,17 @@
+ARIA
+
+Accessible Rich Internet Applications are usually html attributes that make webpages more accessible for visually impaired users through screenreaders.
+
+ChromeVox is an example of a screenreader plugin.
+
+Example:
+
+nav
+	ul	
+		li
+
+Will be read as navigation out loud, list, link.
+Thus rely on the html5 elements first.
+
+
+Google the components you want to make aria accessible. 

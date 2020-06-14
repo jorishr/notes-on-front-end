@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Make it responsive on mobile devices -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Bootstrap v4, Utilities</title>
+  </head>
+  <body>
+    <h1>Bootstrap v4, Utilities</h1>
+
+<div class="container">
+    <h3 class="border">Geef dit een rand</h3>
+    <h3 class="border border-danger border-bottom-0">Geef dit een rand met danger en border-bottom-0</h3>
+    <h3 class="border border-success border-left-0">Geef dit een rand met success en border-left-0</h3>
+    <h3 class="border border-warning rounded">Geef dit een rand met warning en rounded</h3>
+    <h3 class="border border rounded-circle bg-dark text-white text-center">Geef dit een rand met bg en cirkel</h3>
+    <h3 class="border border-dark border-left-0 border-right-0">Geef dit een rand zonder links en rechts</h3>
+<!-- De ronde cirkel, tekst centreren. Bg en contextuele kleuren uitvoorgaande hoofdstuk worden 
+    gecombineerd. -->
+
+<!-- Spacing: padding en margin
+
+Marges en padding via m of p met de zijden en de grootte apart aan te geven. Plus eventueel verschillend  
+gedrag bij xs-sm-md-lg-xl in te stellen (bijv. geen padding op kleine schermen).
+
+    1. Padding van een knop.-->
+
+    <button class="btn btn-succes pt-5">Klik hier</button>
+    <button class="btn btn-danger pl-5">Klik hier</button>
+    <button class="btn btn-warning p-5 border-dark rounded-circle">Klik hier</button>
+    <button class="btn btn-warning p-md-3 p-lg-5">Klik hier eens</button>
+    <button class="btn btn-info px-5">Klik hier</button>
+    <button class="btn btn-info py-5">Klik hier</button>
+    <button class="btn btn-info p-sm-3 p-md-0">Klik hier</button>
+
+    <!-- De 4de hier krijgt dus een padding vanaf medium scherm en een 5 vanaf een large scherm.
+         De laatste krijgt alleen padding op de kleine stand. Opgelet! De kleinste xs wordt niet
+         geschreven, is gewoon p-0.
+         De p waarde zonder zijde geeft padding links, rechts, boven en onder.
+         De px waarde geeft padding op de horizontale as, dus links en rechts
+         De py waarde geeft padding op de vertikale as, dus boven en onder
+         De 0 waarde verwijdert de padding   
+         De waarden gaan van 0-5 met 3=1*rem, 2=*.5, 1=*.25 en 4=*1.5 en 5=*3
+
+    2. Marges bij een paragraaf met achtergrond en padding 3-->
+    
+    <p class="bg-success p-3 m-0">Hier komt de paragraaf zonder marges</p>
+    <p class="bg-success p-3 mb-3 mx-3">Hier komt de paragraaf met marge onderaan en x-as</p>
+    <p class="bg-success p-3 m-3 m-md-5">Hier komt de paragraaf met marge overal en m5 vanaf md</p>
+    <p class="bg-success p-3 mx-1">Hier komt de paragraaf met marge 1</p>
+
+    <!-- 3. Notations: met de display utility kan je bepaalde elementen tonen of verbergen 
+            naargelang de schermgrootte. In v3 is dat met visibility, in v4 met d-breakpunt-value
+        Wat je ook kan doen is een blok element tonen als inline of inline als block-->
+    
+            <h3 class="text-center display-4">Display utility</h3>
+    
+            <h3 class="border border-dark">Display utility</h3>
+            <h3 class="border border-dark d-inline">Display utility</h3>
+            <span class="border border-dark d-block">Display utility</span>
+
+            <h3 class="d-md-none">Hide me on lg</h3>
+            <!-- verborgen VANAF md en verder  -->
+            <h3 class="d-none d-md-block d-lg-none">Always hidden except md</h3>
+            <!-- Altijd verborgen behalve bij md -->
+
+            <!-- Beste use case is allicht bij het verbergen van lange paragrafen op kleine schermen
+            Bijvoorbeeld in Jumbotron -->
+
+            <div class="jumbotron">
+                    <h1 class="display-4">Hello, world!</h1>
+                    <p class="lead d-none d-md-block">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit impedit voluptates aut placeat labore! Consequatur consectetur ipsa eligendi? Nisi ut ex eligendi et laudantium provident magni ab consectetur beatae nulla repudiandae quia quas asperiores modi eos quae inventore explicabo nobis, quaerat rerum aut minima animi pariatur optio? Distinctio, perferendis iusto enim nulla unde suscipit molestiae, magnam eos velit odio doloribus!</p>
+                    <hr class="my-4">
+                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                  </div>
+
+
+
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

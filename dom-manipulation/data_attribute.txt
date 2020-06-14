@@ -1,0 +1,29 @@
+DATA ATTRIBUTE
+
+The data-* attributes allow you to store extra information on standard semantic HTML elements.
+
+Any attribute on any element whose attribute name starts with data- is a data attribute. 
+
+ACCESS IN JS
+
+In the hmtl: <h1 data-<data_name></h2>
+- Select the <element>
+
+- h1.dataset.<data_name>
+
+EXAMPLE: DARKMODE
+
+You add data-theme attribute to the html element
+	
+	<html data-theme='light'>
+
+When a switch is toggled the JS code changes data-theme='dark'
+
+To select the :root html css properties use document.documentElement.setProperty(property, value)
+
+
+HTML+CSS
+Attribute in html: <h1 data-name="Joris">Hello</h1>
+In css: h1:hover::after {content: attr(data-name)}
+
+-> h1: 'hello'; on hover: 'hello Joris' 

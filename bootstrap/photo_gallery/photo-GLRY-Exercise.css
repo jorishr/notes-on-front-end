@@ -1,0 +1,28 @@
+body{
+	padding-top:70px; 
+}
+/*ruimte tussen navbar de rest*/
+.navbar-inverse{
+	background: #2c3e50;
+	color: white;
+}
+
+.jumbotron{
+	color: #2c3e50;
+	background: #ecf0f1;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+	color: white;
+}
+.navbar-inverse .navbar-brand{
+	color:white;
+}
+/*navbar-inverse is een kleurwijzing van een klasse die voorrang heeft
+of specifieker is dan bijvoorbeeld een a anchor. Gewoon de kleur wijzingen
+via a{} zal dus overruled worden.
+
+Oplossing voor de kleur van de tekst in de navbar: zoek de selector in Chrome Inspector die specifieker is.
+*/
+
+/*<i class="fas fa-camera-retro"></i> */

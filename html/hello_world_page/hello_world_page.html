@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Hello World!</title>
+<!-- Dit is een recreatie van de Hello World!-Exercise-template.html -->
+</head>
+
+<body>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/DrDm7uO4Fu0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen align="right"></iframe>
+
+<!-- Het rechts uitlijnen was hierboven belanrijk
+Ik heb alle elementen die samenhoren in een div gestoken. Dit was niet strikt noodzakelijk maar is nuttig om later via CSS snel
+te kunnen stijlen. -->
+
+	<div>
+		<h1>Hello World!</h1>
+		<h2>A few facts about the world we live in</h2>
+	</div>
+
+	<div>
+		<img width="400px" src="earth.jpg">
+
+		<p>Earth is the third planet from the Sun and is the largest of the terrestrial planets. The Earth is the only planet in our solar system not to be named after a Greek or Roman deity. The Earth was formed approximately 4.54 billion years ago and is the only known planet to support life.</p>
+		<hr>
+	</div>
+
+	<div>
+		<h3>About the earth</h3>
+		<ul type="square">
+			<li>Mass: 5,972,190,000,000,000 billion kg</li>
+			<li>Equatorial Diameter: 12,756 km</li>
+			<li>Notable Moons: <a href="http://space-facts.com/the-moon/" target="_blank">The Moon</a></li>
+		</ul>
+		<hr>
+	</div>
+	<div>
+		<h3>Top 3 facts about the earth</h3>
+		<ol start="5" type="I">
+			<li>The Earth’s rotation is gradually slowin</li>
+			<li>The Earth was once believed to be the centre of the universe</li>
+			<li>Earth has a powerful magnetic field</li>
+		</ol>
+		<hr>
+	</div>
+
+	<div>
+		<table>
+			<thead>
+				<th>Name</th>
+				<th>Radius</th>
+				<th>Average<br>Temperature</th>
+
+<!-- Als een stukje tekst van een titel niet helemaal in het vakje past kan je eenvoudig
+een tweede lijn toevoegen door een <br> te gebruiken -->
+
+			</thead>
+			<tbody>
+				<tr>
+					<td>Mars</td>	
+					<td>3,403km</td>
+					<td>-46°c</td>	
+				</tr>
+				<tr>
+					<td>Venus</td>
+					<td>6,052km</td>
+					<td>462°c</td>	
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+	</div>
+
+<!-- Ik heb hier een div gebruikt voor de button omdat als dummy nergens naar toe ging maar het is
+eigenlijk beter om een form met action attribuut en een input submit te gebruiken om een werkende knop te hebben.
+De <p> is niet noodzakelijk maar het voegt opmaak toe.
+	<div>
+		<h3>Want to know more?</h3>
+		<input type="button" name="button" value="CLICK HERE!">
+	</div> -->
+	<form action="https://space-facts.com/earth/?">
+		<h3>Want to know more?</h3>
+		<p><input type="submit" value="Click Here!"></p>		
+	</form>
+</body>
+</html>

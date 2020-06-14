@@ -1,0 +1,5 @@
+BOOTSTRAP FORMS
+
+Er is het standaard formulier en de in-line versie.
+
+De twee klassen die verantwoordelijk zijn voor de speciale layout zijn .form-group en .form-control 
