@@ -1,7 +1,8 @@
-<!-- TABLES -->
+# Tables
+See example of a league table at my [Codepen](https://codepen.io/jorishr/pen/vYYvvvY).
+```HTML
 <h4>Tabellen</h4>
-
-<table border="1">
+<table style="border: 1">
 	<caption>This is a table, a caption is the very first element of a table</caption>
 	<thead>
 		<!-- Header with multiple rows/columns -->
@@ -22,7 +23,6 @@
 			<td>Bulbasaur</td>
 			<td>Grass/Poison</td>
 			<td><a href="http://pokemon.wikia.com/wiki/Ivysaur">Ivysaur</a></td>
-
 		</tr>
 		<tr>
 			<td><img src=""></td>
@@ -40,3 +40,4 @@
 		</tr>
 	</tfoot>
 </table>
+```

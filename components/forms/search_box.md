@@ -73,7 +73,7 @@ To change the placeholder color text use the placeholder pseudo elememt class.
 Padding can be added to position better the input text.
 
 IMPORTANT: set :focus-within on the search-box. The :focus on the input element is limited in functionality. When you want to change other elements than the input element itself the :focus-within pseudo class lets you make all the change when inside the box the input elememt is in focus.
-```
+```SCSS
 .search-box:focus-within {
 	background: $secondColor;
 
