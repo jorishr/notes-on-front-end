@@ -1,3 +1,131 @@
+/*
+###################
+FONTS AND FONT-FAMILY
+###################
+
+REFERENCE: https://practicaltypography.com/
+
+CONTENTS
+I.	OVER FONTS
+     		A.  Ondersteuning
+           B.  Font-Families
+           C.  CSS Font properties and guidlines
+II.	WEBFONTS AND LOCAL FONTS
+III.	HOW TO CHOOSE A FONT
+IV.	MEASURING FONT SIZE	
+
+
+I.	OVER FONTS
+	
+	A. Ondersteuning 
+
+Niet alle fonts worden zomaar door alle systemen en browsers ondersteund. Gebruik daarom meerdere font-family's die elkaar benaderen, bijvoorbeeld: Times New Roman, Times, serif.
+
+Vooral oudere systemen kunnen dan kiezen voor wat het best gelijkt op wat je wilde hebben.
+
+BELANGRIJK: Informeer je over de gebruiksvoorwaarden van speciale web fonts.
+
+Check op
+	https://www.w3schools.com/cssref/css_websafe_fonts.asp
+	https://www.cssfontstack.com
+
+
+	B.	Font-Families
+
+Voorbeeld: 
+font-family: Times Arial;
+font-weight: bold; 
+OF specifiek: 300 (light), 400 (normal), 700 (bold), 900 (black).
+- font-style: italic;
+
+De verschillende weight en style combinaties maken telkens tot 1 face van de font-family. Het ontwerp van een website maakt meestal gebruik van verschillende font-faces uit dezelfde family. Zoniet probeert de browser dat te faken met synthesis: 
+font-synthesis: none; // -> werkt enkel in firefox
+
+De font-family bepaal je in de base style css file van je project.
+
+	C. Voornaamste Font CSS opties en richtlijnen: 
+
+font-weigth: bold;
+font-weigth: 100; 	// -> 300, 500, 800 as specified in the font-family
+
+font-size: 2.5rem;      
+
+text-decoration: underline; of none     // only use with hover states. 
+
+font-spacing: 2px;  // -> space between characters      
+
+text-align: left/right/center/justified;    
+    // avoid <justified> as the variable font-spacing that is used to fill up
+    // the available space will vary widely between browsers 
+
+NOTE: text-align centers text inside the parent element, not the page. 
+
+DO's and DON'T's
+- use a font-size between 14px and 20px for the body element.
+
+
+II. WEBFONTS AND LOCAL FONTS
+
+Google Fonts is a quick and easy solution, but professional sites should typically use locally hosted web fonts.
+
+Web Open Font Format (WOFF) is de nieuwe standaard voor fonts. 
+
+Voor legacy browsers kan je soms te maken hebben met svg, ttf of eot formaten en op websites vind je soms de syntax @font-face {} terug.
+
+De meeste beslingen komen van een designer. Maar je moet overweg kunnen met al deze concepten om ze kunnen toe te passen in de code, begrijpen waarom.
+
+    SETUP: add to html
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+
+
+    B.  LOCALLY hosted
+
+SETUP:
+- add font-family files to local dir: normal, italic and bold
+- add link in css sheet
+- in CSS:
+
+@font-face {
+    font-family:"label";src: url(normal-file);
+	font-style: normal;
+	font-weight: 300;
+}
+@font-face {
+    font-family:"label";src: url(italic-file);
+	font-style: italic;
+	font-weight: 300;
+}
+@font-face {
+    font-family:"label";src: url(bold-file);
+	font-style: bold;
+	font-weight: 700;
+}
+
+NOTE: dankzij het "label" laat je de browser weten dat de @font-face types gerelateerd zijn.
+
+Vervolgens kan je in de CSS font-style: gewoon werken met italic en bold, en moet je niet specifiek font-weight opgeven.
+
+III. HOW TO CHOOSE A FONT
+
+Fastest way: use Fontpair.co website or experiment at fontjoy.com
+
+Start with the most popular on Google Fonts. Pick one that has lots of different weights. Because a weight that works in the title may not work on the paragraph.
+
+The sans-serif fonts are a good way to start.
+
+Add an accent font that stands out. The more contrast with the base font, the better.
+
+A classic is the combination of sans-serif with a sans font. Use it for titles/subtitles or things that have to stand out.
+
+
+IV. MEASURING FONT SIZE
+
+- use page ruler extension for chrome
+
+- measure form the heighest point of the capital letter to the lowest point of a g or y.
+*/
+
+
 @font-face {
   font-family: "Roboto"; /*dit is een intern label dat je zelf kan kiezen*/
   src: url("Roboto-Light-webfont.woff") format("woff");
