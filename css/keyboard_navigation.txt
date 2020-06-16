@@ -1,7 +1,0 @@
-KEYBOARD NAVIGATION
-
-Some users prefer to navigate a site through keyboard only, using tab, arrows and enter. 
-
-CSS FOCUS STATE
-When you set outline: none to avoid the default browser frame you will have to specify other :focus styles so that users can see which btn or item is selected. 
-The easy way out it make it the same as the :hover styles.
