@@ -1,4 +1,9 @@
 # Checkbox input fields 
+Table of contents
+- [Checkbox input fields](#checkbox-input-fields)
+  - [Styling checkboxes](#styling-checkboxes)
+  - [Custom SVG checkbox: accessible and animated](#custom-svg-checkbox-accessible-and-animated)
+
 Radio buttons are grouped into a set in which only one radio button can be
 selected at a time, whereas checkboxes allow you to turn single values on 
 and off. Where multiple controls exist, radio buttons allow only ONE to be 
@@ -24,3 +29,8 @@ value as you see fit.
 ```
 ## Styling checkboxes
 By putting the input element nside the label tag the layout on a SINGLE LINE becomes easier as you can use width: auto on the label. This will make the label as wide as the width of the content elements.
+
+## Custom SVG checkbox: accessible and animated
+See my Codepen: [SVG Checkbox](https://codepen.io/jorishr/pen/poJNwmY)
+
+This is probably the most elegant solution I have seen.
