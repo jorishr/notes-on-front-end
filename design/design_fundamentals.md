@@ -1,36 +1,30 @@
-####################
-DESIGN FUNDAMENTALS
-####################
-I.	ABOUT UI/UX
-II.	FUNDAMENTALS
-####################
+# Design fundamentals
+Table of contents
+- [Design fundamentals](#design-fundamentals)
+  - [About UX/UI](#about-uxui)
+  - [Fundamentals](#fundamentals)
+    - [Contrast](#contrast)
+  - [White space](#white-space)
+  - [Consistency and visual hierarchy](#consistency-and-visual-hierarchy)
+  - [Simplicity](#simplicity)
+  - [Color schemes](#color-schemes)
 
-
-#################
-I.	ABOUT UI/UX
-#################
-
+## About UX/UI
 User Interface refers to the building blocks that allow a user to interact with your application. Most prominent are buttons and navbars. The important goal of UI is to make sure the user can actually accomplish the tasks he is supposed to do. Add item to a cart by clicking a button, for example. It is mostly visual.
 
 User Experience has a broader scope and includes analyzing and researching and predicting actual user behavior. What is the entire process of a user coming to the site and the purchase you want him to make.
 
 
-##################
-II.	FUNDAMENTALS
-##################
-
-CONTRAST
-
+## Fundamentals
+### Contrast
 Use colors that contrast sufficiently. See pre-selected color schemes and check your design in chrome dev tools or use the KONTRAST plugin.
 
 Especially for font-color proper contrast is important to people with visibility issues.
 
-WHITE SPACE
-
+## White space
 Use sufficient white space through padding and margins. When in doubt, use more.
 
-CONSITENCY AND VISUAL HIERARCHY
-
+## Consistency and visual hierarchy
 Make sure that a limited number of colors are re-used and correspond to similar elements, especially for buttons, borders, headings, etc. 
 
 Give them a proper color/font-size that indicates their importance and suggests a visual hierarchy. 
@@ -39,14 +33,10 @@ You have to visually guide the user to the possible call of action points on you
 
 Example: navigation bar on top, lower the opacity to seperate it from the logo which may be bolder.
 
-SIMPLICITY
-
+## Simplicity
 Not all what is technically possible should be used. Animations need to have a function.
 
-
-COLOR SCHEMES
-
+## Color schemes
 Start the design as white background and black for text, borders, and figures.
 
 Next, add one focus color and play around with the hue or opacity for that same color.
-
