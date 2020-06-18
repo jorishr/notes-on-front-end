@@ -97,6 +97,8 @@ Upon first event, the event handler function needs to be executed. To track whet
 
 The setTimeout will reset the flag after x ms, allowing a new function execution to proceed.
 
+See my Codepen for a working example: [throttlin](https://codepen.io/jorishr/pen/qBdqRrB)
+
 ### Window resize events
 By adding an event listener to the window, each time the user resizes the window one pixel the event is triggered resulting into hundreds or thousands of function calls for a relatively small resize event. 
 

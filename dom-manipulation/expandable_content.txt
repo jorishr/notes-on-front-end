@@ -1,8 +1,0 @@
-########################
-MULTI-LINE TEXT OVERFLOW
-########################
-
-MULTI-LINE TEXT OVERFLOW
-https://blog.webdevsimplified.com/2020-01/dynamic-expandable-content/
-
-SEE ALSO: ACCORDION

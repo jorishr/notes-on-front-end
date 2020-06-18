@@ -68,6 +68,7 @@ document.documentElement.parentNode	//-> #document (root)
 ### Manipulating attributes and text
 If you selected an element node and want to modify text inside that element you have to target the text node inside the element. That text node can be accessed by the `innerHTML` property. The nodeValue for the element node itself is null or the attribute value of value="".
 
+Manipulating other element attributes can be done as well: `elem.setProperty(property, value)`. To change an attribute value on the `:root` html element in css use `document.documentElement.setProperty(property, value)`.
 
 ## Searching for element nodes
 All methods `getElementsBy*` return a live collection. Such collections always reflect the current state of the document and auto-update when it changes.
