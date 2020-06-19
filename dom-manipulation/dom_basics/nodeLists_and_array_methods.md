@@ -1,5 +1,5 @@
-# Collections and array methods
-Collections are array-like objects with some iterative functionality but they do not contain all methods availble through the Array.prototype.
+# NodeLists and array methods
+NodeLists are array-like objects with some iterative functionality but they do not contain all methods available through the Array.prototype.
 
 To have that functionality you should convert the collection to an array first.
 

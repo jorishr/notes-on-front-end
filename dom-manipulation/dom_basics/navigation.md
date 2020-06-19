@@ -2,7 +2,11 @@
 Table of contents
 - [DOM Navigation](#dom-navigation)
 	- [Surrounding nodes of a selected element](#surrounding-nodes-of-a-selected-element)
-	- [DOM Collections](#dom-collections)
+	- [NodeLists](#nodelists)
+		- [Live vs Static](#live-vs-static)
+		- [Iteration](#iteration)
+		- [Array methods](#array-methods)
+	- [HTML Collection](#html-collection)
 	- [Navigate element nodes only](#navigate-element-nodes-only)
 		- [Manipulating attributes and text](#manipulating-attributes-and-text)
 	- [Searching for element nodes](#searching-for-element-nodes)
@@ -31,25 +35,40 @@ Some DOM types have additional properties that can be used to navigate or access
 table.rows	//-> collection of <tr> elements in the table
 tr.cells	//-> collection if cells <td> and <th> inside a <tr>
 ```
-## DOM Collections
-The above properties return the specified node as a NODE OBJECT. If there are multiple objects you get an NODE LIST, an iterable array-like datastructure. Collection are LIVE: if you add/remove childnodes, for example, they will (dis)appear in your collection automatically.
+## NodeLists
+The above properties return the specified node as a NODE OBJECT. If there are multiple objects you get a NODE LIST OBJECT, an iterable array-like datastructure.
 
-Iterate over a DOM collection with a for-loop. Do not use a for...in-loop as it may show you object properties that are not usefull.
+NodeList objects are collections of nodes, usually returned by properties such as `Node.childNodes` and methods such as `document.querySelectorAll()`.
 
-To use array methods like `.filter` you can convert the DOM collection into an real array:
+The number of elements in nodeList is found in the .length property.
+
+### Live vs Static
+Some nodeLists objects are live and get updated when a change happens in the DOM. Example: `<node>.childnodes`
+
+Other nodeLists objects are static and will not reflect such changes. This is the case of the `querySelectorAll()`.
+
+### Iteration
+Iterating over a nodeList object can be done with a for-loop or a for...in-loop.
+
+Do not use a for...in-loop as it may show you object properties that are not usefull like length and item properties.
+
+Most modern browsers support the `forEach()` method as well.
+
+### Array methods
+To use array methods like `.filter` you can convert the nodeList collection into an real array:
 ```Javascript
 let elemArray = Array.from(document.body.childNodes);
 
 ```
-Both NODE LISTS and HTML Collections are collections of DOM elements. 
+## HTML Collection
+A HTML Collection is similar to a nodeList and only contains element nodes. Elements can be targeted by name, id or index position in the collection, where the nodeList is limited to index position targeting only.
 
-The NodeList can be live or static, which means that modifications to the DOM are either automatically applied to collections or do not affect them at all.
+HTML collections are live and get updated with DOM changes.
 
-The number of elements in a DOM collection is found in the .length property.
+HTML Collection are return by the `getElementsBy*` selector methods such as:
+`getElementsByClassName` and `getElementsByTagName`.
 
-A Node List has a `.forEach` method available to it and can contain both textNodes and element nodes.
-
-A HTML Collection only contains element nodes and elements can be targeted by name, id or index position in the collection.
+To iterate over them proceed as with a nodeList.
 
 ## Navigate element nodes only
 To exclude #text and comment nodes when targetting html tags you can use the following identifiers:
