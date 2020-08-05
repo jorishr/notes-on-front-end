@@ -1,4 +1,9 @@
 # Redux
+- [Redux](#redux)
+  - [About](#about)
+  - [Setup](#setup)
+  - [Actions, reducer and store](#actions-reducer-and-store)
+
 ## About
 Redux is a state management library. It can be used without React. Redux models the application state as a single Javascript object. Thus there is just one object that holds the entire state data of the application (or the data you put into it).
 

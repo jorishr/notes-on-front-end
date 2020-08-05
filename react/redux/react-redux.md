@@ -1,4 +1,9 @@
 # React Redux
+- [React Redux](#react-redux)
+  - [React app setup with react-redux provider](#react-app-setup-with-react-redux-provider)
+  - [Component setup with connect](#component-setup-with-connect)
+  - [Folder structure](#folder-structure)
+
 React-Redux is a library that facilitates the integration of Redux with React by exposing a Provider component and a connect function. It also handles setting up listeners and passing state to components.
 
 `npm install --save react-redux`
