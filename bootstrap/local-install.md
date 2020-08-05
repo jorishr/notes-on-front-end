@@ -2,9 +2,10 @@
 Copy the necessary files to static folder and add the correct paths. All files (css/js) in one folder or seperate scripts/scss and one folder for vendor: jquery and popper.js
 
 ## FONTAWESOME LOCAL INSTALL
-- Copy webfonts folder
-- import into sass: main files + styles.
-- update the $fa-font-path: "../webfonts" in the _variables.scss
+- install as a DEV dependency in NPM
+- Copy webfonts folder to where the final static files will live
+- import into sass: main files + styles from nodemodules folder or make a copy to style modules folder
+- set a custom variable for the webfonts path $fa-font-path: "../webfonts" in the _variables.scss
 
 [Fontawesome + SASS Guide](https://fontawesome.com/how-to-use/on-the-web/using-with/sass)
 

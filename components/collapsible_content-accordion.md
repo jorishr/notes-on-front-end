@@ -64,3 +64,20 @@ for(let i=0; i < btns.length; i++){
 .active::after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+```
+
+## Expandable paragraphs
+Calculate the height based on `lineheight * number of lines to show`. Use calc:
+```css
+--line-height: 1.5;
+--lines-to-show: 5;
+height: calc(var(--line-height) * var(--lines-to-show) * 1em);
+overflow: hidden;
+```
+Use a gradient over the paragraph container pseudo-element to fade out the text towards the bottom:
+```css
+background: linear-gradient(to bottom, transparent, white);
+```
+Change height and remove gradient upon click event (read more/read less).
+
+See working example on Codepen: [Dynamic Expandable Content](https://codepen.io/WebDevSimplified/pen/QWwoRGV) 
