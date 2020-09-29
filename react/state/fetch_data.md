@@ -1,4 +1,10 @@
 # Fetching data in function components
+- [Fetching data in function components](#fetching-data-in-function-components)
+  - [Fetching data from a query](#fetching-data-from-a-query)
+  - [Error handling](#error-handling)
+  - [Loading icon](#loading-icon)
+  - [UseFetch custom hook module](#usefetch-custom-hook-module)
+
 `useState` is a hook used to maintain local states in function components. `useEffect` is used to execute functions after a component gets rendered to “perform side effects”. `useEffect` can be limited to cases where a selected set of values change. These values are referred to as "dependencies". `useEffects` does the job of `componentDidMount`, `componentDidUpdate`, `componentWillUpdate` combined.
 
 The `useEffect` will make a network request on component render. When that fetch resolves, it will set the response from the server to the local state using the `setState` function. This, in turn, will cause the component to render so as to update the DOM with the data.
