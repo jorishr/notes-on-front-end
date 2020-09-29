@@ -11,7 +11,23 @@ With a controlled component, every state mutation will have an associated handle
 
 ## Form submit
 When the input element is part as a form there should NOT be a `onClick={handler}` on the submit button. Instead use the `onSubmit={handler}` on the FORM element.
+To access the value of the input element inside the form handler function, use another state variable that is updated through an `onChange={handler}` function. That state variable is then accessible in other handler functions as well.
+```js
 
+const [state, setState] = useState();
+const [inputState, setInput] = useState('');
+
+function handleSubmit(){
+  //...
+  setState({...state, inputState})
+}
+
+return (
+  <form onSubmit={handleSubmit}>
+    <input onChange={event => setInput(event.target.value)}>
+  </form>
+)
+```
 
 ## Textarea
 In React a textarea behaves as an input element with a value attribute. Not the text you may write between the opening and closing tags. Thus:

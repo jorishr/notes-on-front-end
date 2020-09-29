@@ -13,7 +13,7 @@ To make a component interactive and change it upon certain events, we need to in
 ### Component hierachy: extending the Parent class
 Since props are passed down the component hierarchy from parent to child components we need to adapt the parent constructor class in the child componenent constructor. This is done with the classic Javascript class extension syntax.
 ### The state object
-State is an object defined in the component that owns that state. It's value can be arbitrarily set or taken from a prop. In this example we keepi track of the 'count state' which has an initial state defined by the `props.initialCount` variable defined in the parent component.
+State is an object defined in the component that owns that state. It's value can be arbitrarily set or taken from a prop. In this example we keep track of the 'count state' which has an initial state defined by the `props.initialCount` variable defined in the parent component.
 ```js
 export default class Child extends Parent {
 	constructor(props){
@@ -43,7 +43,7 @@ To actually change the state we need an event or function that triggers the chan
 <button onClick={() => this.changeCount(-1)}>-</button>
 ```
 #### The setState method
-The above function (`changeCount`) needs to be defined inside the Button class,whereby we update the state object. This is done by React through the Javascript native `Object.assign` method creates a new object from the existing one and only overrides the key-value pairs you wish to change. In this example the property `count: this.initialCount` gets overriden by its current state + amount specified in the argument of the function:
+The above function (`changeCount`) needs to be defined inside the Button class, whereby we update the state object. This is done by React through the Javascript native `Object.assign` method creates a new object from the existing one and only overrides the key-value pairs you wish to change. In this example the property `count: this.initialCount` gets overriden by its current state + amount specified in the argument of the function:
 ```js
 export default class Child extends Parent {
 	constructor(props){
@@ -66,7 +66,7 @@ export default class Child extends Parent {
 }
 ```
 #####  Previous state
-All the calls that are being made to `this.setState()` are batched together and invoked in parrallel, not one after another. This means that you cannot chain various changes. The next invocation will already start before the previous one is updated.
+All the calls that are being made to `this.setState()` are batched together and invoked in parrallel, not one after another. This means that you cannot chain various changes. The next invocation will already start before the previous one is updated and async state changes may take a while as well.
 ```js
 //example: this.state.count = 1 and amount = 1
 changeCount(amount){
@@ -77,13 +77,13 @@ changeCount(amount){
 //-> 2
 //both will start at the current state of count = 1
 ```
-The solution is to use a variable called `prevState` which takes a function that returns the new state value based upon the previous state value, not the static base value (`this.state.count`).
+The solution is to use a function whereby we pass in the current or previos state as an argument. The function returns the new state value based upon the previous state value, not the static base value (`this.state.count`).
 ```js
 changeCount(amount){
-	this.setState({ prevState => {
+	this.setState((prevState, props) => {
 		return { count: prevState.count + amount }
 	});
-	this.setState({ prevState => {
+	this.setState((prevState, props) => {
 		return { count: prevState.count + amount }
 	});
 }
